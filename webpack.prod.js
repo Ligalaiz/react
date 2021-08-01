@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { merge } = require('webpack-merge');
+const ESLintPlugin = require('eslint-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const { extendDefaultPlugins } = require('svgo');
@@ -36,6 +37,11 @@ module.exports = merge(common, {
     new webpack.ids.HashedModuleIdsPlugin(),
     new MiniCssExtractPlugin({
       filename: 'styles/[name][hash].css',
+    }),
+    new ESLintPlugin({
+      extensions: ['js', 'jsx'],
+      fix: false,
+      failOnError: true,
     }),
     new UglifyJsPlugin(),
     new ImageMinimizerPlugin({
