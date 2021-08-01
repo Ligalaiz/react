@@ -1,4 +1,5 @@
 import React from 'react';
+import Optional from '../optional/Optional';
 
 export default class ApartmentTable extends React.Component {
   render() {
