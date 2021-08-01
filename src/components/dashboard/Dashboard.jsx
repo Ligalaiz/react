@@ -1,4 +1,5 @@
 import React from 'react';
+import SearchBar from '../searchBar/SearchBar';
 
 export default class Dashboard extends React.Component {
   constructor(props) {
