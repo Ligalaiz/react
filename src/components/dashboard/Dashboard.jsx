@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchBar from '../searchBar/SearchBar';
+import ApartmentTable from '../apartmentTable/ApartmentTable';
 
 export default class Dashboard extends React.Component {
   constructor(props) {
