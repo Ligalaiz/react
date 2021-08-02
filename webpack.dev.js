@@ -11,8 +11,9 @@ module.exports = merge(common, {
   devtool: 'inline-source-map',
 
   output: {
-    filename: '[name].js',
-    assetModuleFilename: 'assets/[name][ext]',
+    filename: '[name].[hash:10].js',
+    chunkFilename: '[name].[hash:10].js',
+    assetModuleFilename: 'assets/[name].[hash:10].[ext]',
   },
 
   devServer: {
@@ -61,7 +62,8 @@ module.exports = merge(common, {
 
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'styles/[name].css',
+      filename: 'styles/[name].[contenthash:10].css',
+      chunkFilename: '[name].[contenthash:10].css',
     }),
     new ReactRefreshWebpackPlugin(),
   ],

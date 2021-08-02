@@ -10,7 +10,6 @@ module.exports = {
   entry: ['@babel/polyfill', path.resolve(__dirname, './src/index.jsx')],
 
   output: {
-    chunkFilename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
   },
 
@@ -38,14 +37,14 @@ module.exports = {
         test: /\.(?:ico|gif|png|jpe?g|svg)$/i,
         type: 'asset',
         generator: {
-          filename: 'assets/images/[name].[ext]',
+          filename: 'assets/images/[name].[contenthash:10].[ext]',
         },
       },
       {
         test: /\.(woff(2)?|eot|ttf|otf)$/i,
         type: 'asset/resource',
         generator: {
-          filename: 'assets/fonts/[name].[ext]',
+          filename: 'assets/fonts/[name].[contenthash:10].[ext]',
         },
       },
     ],

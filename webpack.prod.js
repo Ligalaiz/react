@@ -10,8 +10,9 @@ module.exports = merge(common, {
   target: 'browserslist',
 
   output: {
-    filename: '[name].[hash].js',
-    assetModuleFilename: 'assets/[name].[hash].[ext]',
+    filename: '[name].[chunkhash:10].js',
+    chunkFilename: '[name].[chunkhash:10].js',
+    assetModuleFilename: 'assets/[name].[chunkhash:10].[ext]',
   },
 
   performance: {
@@ -43,7 +44,8 @@ module.exports = merge(common, {
 
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'styles/[name].[hash].css',
+      filename: 'styles/[name].[contenthash:10].css',
+      chunkFilename: '[name].[contenthash:10].css',
     }),
     new ESLintPlugin({
       extensions: ['js', 'jsx'],
