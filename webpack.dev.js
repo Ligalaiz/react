@@ -27,6 +27,16 @@ module.exports = merge(common, {
   module: {
     rules: [
       {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            plugins: ['react-refresh/babel'],
+          },
+        },
+      },
+      {
         test: /\.(sa|sc|c)ss$/i,
         use: [
           {

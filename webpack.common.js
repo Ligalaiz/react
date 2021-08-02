@@ -35,22 +35,17 @@ module.exports = {
         use: 'html-loader',
       },
       {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        use: 'babel-loader',
-      },
-      {
         test: /\.(?:ico|gif|png|jpe?g|svg)$/i,
         type: 'asset',
         generator: {
-          filename: 'assets/images/[name][ext]',
+          filename: 'assets/images/[name].[ext]',
         },
       },
       {
         test: /\.(woff(2)?|eot|ttf|otf)$/i,
         type: 'asset/resource',
         generator: {
-          filename: 'assets/fonts/[name][ext]',
+          filename: 'assets/fonts/[name].[ext]',
         },
       },
     ],

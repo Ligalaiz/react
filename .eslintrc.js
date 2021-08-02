@@ -3,6 +3,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2021,
     sourceType: 'module',
+    requireConfigFile: false,
     ecmaFeatures: {
       jsx: true,
     },
@@ -22,7 +23,7 @@ module.exports = {
     node: true,
     es6: true,
   },
-  plugins: ['prettier', 'react-hooks', '@babel', 'jsx-a11y', 'import', 'react'],
+  plugins: ['@babel', 'prettier', 'react-hooks', 'jsx-a11y', 'import', 'react'],
   rules: {
     commonjs: [0],
     amd: [0],

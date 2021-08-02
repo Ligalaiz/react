@@ -2,10 +2,10 @@
   "name": "react",
   "version": "1.0.0",
   "description": "React components",
-  "main": "index.js",
+  "private": true,
   "scripts": {
     "dev": "webpack serve --config webpack.dev.js",
-    "build": "webpack  --config webpack.prod.js",
+    "build": "webpack --config webpack.prod.js",
     "lint": "eslint ./src --cache && echo \"No linting errors\"",
     "lint:fix": "eslint ./src --fix",
     "clean": "rm -rf dist"
@@ -69,7 +69,6 @@
     "sass-loader": "^12.1.0",
     "sugarss": "^4.0.1",
     "svgo": "^2.3.1",
-    "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^5.47.0",
     "webpack-bundle-analyzer": "^4.4.2",
     "webpack-cli": "^4.7.2",

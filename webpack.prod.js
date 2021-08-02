@@ -1,8 +1,6 @@
-const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { merge } = require('webpack-merge');
 const ESLintPlugin = require('eslint-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const { extendDefaultPlugins } = require('svgo');
 const common = require('./webpack.common');
@@ -13,11 +11,20 @@ module.exports = merge(common, {
 
   output: {
     filename: '[name].[hash].js',
-    assetModuleFilename: 'assets/[name][hash][ext]',
+    assetModuleFilename: 'assets/[name].[hash].[ext]',
+  },
+
+  performance: {
+    hints: false,
   },
 
   module: {
     rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: 'babel-loader',
+      },
       {
         test: /\.(sa|sc|c)ss$/i,
         use: [
@@ -33,17 +40,16 @@ module.exports = merge(common, {
       },
     ],
   },
+
   plugins: [
-    new webpack.ids.HashedModuleIdsPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'styles/[name][hash].css',
+      filename: 'styles/[name].[hash].css',
     }),
     new ESLintPlugin({
       extensions: ['js', 'jsx'],
       fix: false,
       failOnError: true,
     }),
-    new UglifyJsPlugin(),
     new ImageMinimizerPlugin({
       minimizerOptions: {
         plugins: [
