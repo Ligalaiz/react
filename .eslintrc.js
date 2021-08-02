@@ -25,6 +25,11 @@ module.exports = {
   },
   plugins: ['@babel', 'prettier', 'react-hooks', 'jsx-a11y', 'import', 'react'],
   rules: {
+    'react/prop-types': 0,
+    'react/destructuring-assignment': [0],
+    'jsx-a11y/control-has-associated-label': 'off',
+    'jsx-a11y/label-has-associated-control': 'off',
+    'no-restricted-syntax': 'off',
     commonjs: [0],
     amd: [0],
     'prettier/prettier': 'error',
