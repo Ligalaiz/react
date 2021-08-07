@@ -6,6 +6,7 @@ import SelectField from '../selectField/SelectField';
 import BirthdayField from '../birthdayField/BirthdayField';
 import AgreementField from '../agreementField/AgreementField';
 import SwitchField from '../switchField/SwitchField';
+import FormBtn from '../formBtn/FormBtn';
 
 const baseState = {
   fileCV: '',
@@ -206,6 +207,7 @@ export default function Form(props) {
       </div>
       <AgreementField agreement={agreement} handleChange={handleChange} />
       <SwitchField mode={mode} handleModeChange={handleModeChange} />
+      <FormBtn formBtn={formBtn} handleFormBtnClick={handleFormBtnClick} />
     </form>
   );
 }
