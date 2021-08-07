@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import Form from './form/Form';
+import Card from './card/Card';
 import '../styles/index.scss';
 
 const App = () => {
+  const [cards, setCards] = useState([]);
 
   return (
     <>
@@ -11,7 +14,12 @@ const App = () => {
           Complete the form below, telling us why you’d be a great fit at
           Wargaming, and you could be part of our awesome family.
         </p>
-        <Form />
+        <Form setCards={setCards} />
+      </div>
+      <div className="card__wrap">
+        {cards.map((card, index) => {
+          return <Card key={index} card={card} index={index} />;
+        })}
       </div>
     </>
   );
