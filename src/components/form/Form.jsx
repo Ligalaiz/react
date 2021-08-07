@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { isNameValid, isNumberValid, isFileValid } from '../../utils';
+import FileField from '../fileField/FileField';
 
 const baseState = {
   fileCV: '',
@@ -156,6 +157,21 @@ export default function Form(props) {
   };
 
   return (
-    <form onSubmit={handleSubmit} autoComplete="off" className="form"></form>
+    <form onSubmit={handleSubmit} autoComplete="off" className="form">
+      <div className="form__file file">
+        <div className="file__wrap file__wrap--left">
+          <FileField handleChange={handleChange} error={error} name="fileCV" />
+          <FileField
+            handleChange={handleChange}
+            error={error}
+            name="portfolio"
+          />
+        </div>
+        <div className="file__wrap file__wrap--right">
+          <FileField handleChange={handleChange} error={error} name="letter" />
+          <FileField handleChange={handleChange} error={error} name="task" />
+        </div>
+      </div>
+    </form>
   );
 }
