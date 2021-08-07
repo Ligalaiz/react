@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import Form from './form/Form';
 import Card from './card/Card';
+import Message from './message/Message';
 import '../styles/index.scss';
 
 const App = () => {
   const [cards, setCards] = useState([]);
+  const [message, setMessage] = useState(false);
 
   return (
     <>
@@ -14,7 +16,8 @@ const App = () => {
           Complete the form below, telling us why you’d be a great fit at
           Wargaming, and you could be part of our awesome family.
         </p>
-        <Form setCards={setCards} />
+        <Form setCards={setCards} setMessage={setMessage} />
+        {message && <Message />}
       </div>
       <div className="card__wrap">
         {cards.map((card, index) => {
