@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { isNameValid, isNumberValid, isFileValid } from '../../utils';
 import FileField from '../fileField/FileField';
 import DataField from '../dataField/DataField';
+import SelectField from '../selectField/SelectField';
 
 const baseState = {
   fileCV: '',
@@ -187,7 +188,18 @@ export default function Form(props) {
         handleChange={handleChange}
         isValid={isNameValid}
       />
-
+      <DataField
+        name="phone"
+        value={phone}
+        type="tel"
+        maxLength="10"
+        minLength="10"
+        handleChange={handleChange}
+        isValid={isNumberValid}
+      />
+      <div className="option__wrap">
+        <SelectField experience={experience} handleChange={handleChange} />
+      </div>
     </form>
   );
 }
