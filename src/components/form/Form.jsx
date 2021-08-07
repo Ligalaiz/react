@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { isNameValid, isNumberValid, isFileValid } from '../../utils';
 import FileField from '../fileField/FileField';
+import DataField from '../dataField/DataField';
 
 const baseState = {
   fileCV: '',
@@ -172,6 +173,21 @@ export default function Form(props) {
           <FileField handleChange={handleChange} error={error} name="task" />
         </div>
       </div>
+      <DataField
+        name="name"
+        value={name}
+        maxLength="11"
+        handleChange={handleChange}
+        isValid={isNameValid}
+      />
+      <DataField
+        name="surname"
+        value={surname}
+        maxLength="11"
+        handleChange={handleChange}
+        isValid={isNameValid}
+      />
+
     </form>
   );
 }
