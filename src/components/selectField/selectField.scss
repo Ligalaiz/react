@@ -1,0 +1,17 @@
+@import '../../styles/variables';
+
+.experiance {
+  &__select {
+    width: 150px;
+
+    color: var(--primary-color);
+
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  &__item {
+    color: $black-color;
+  }
+}
