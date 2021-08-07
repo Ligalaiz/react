@@ -3,6 +3,7 @@ import { isNameValid, isNumberValid, isFileValid } from '../../utils';
 import FileField from '../fileField/FileField';
 import DataField from '../dataField/DataField';
 import SelectField from '../selectField/SelectField';
+import BirthdayField from '../birthdayField/BirthdayField';
 
 const baseState = {
   fileCV: '',
@@ -199,6 +200,7 @@ export default function Form(props) {
       />
       <div className="option__wrap">
         <SelectField experience={experience} handleChange={handleChange} />
+        <BirthdayField birthday={birthday} handleChange={handleChange} />
       </div>
     </form>
   );
