@@ -1,6 +1,11 @@
 export default function SearchBar(props) {
-  const { searchRequest, setSearchRequest, setItems, sortType } =
-    props;
+  const {
+    searchRequest,
+    setSearchRequest,
+    setItems,
+    sortType,
+    setPageTotal,
+  } = props;
 
   const date = new Date();
   const month = date.getMonth();
@@ -39,6 +44,8 @@ export default function SearchBar(props) {
         throw Error(result.message);
       }
 
+      const pages = Math.floor(result.totalResults / 10);
+      setPageTotal(pages);
       setItems(result.articles || []);
     } catch (err) {
       console.log(err.message);
