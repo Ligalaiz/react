@@ -8,6 +8,7 @@ export default function SearchBar(props) {
     pageNumber,
     setPageTotal,
     setPageNumber,
+    setError,
   } = props;
 
   const date = new Date();
@@ -51,7 +52,7 @@ export default function SearchBar(props) {
       setPageTotal(pages);
       setItems(result.articles || []);
     } catch (err) {
-      console.log(err.message);
+      setError(err);
       setPageNumber('1');
     }
   };
