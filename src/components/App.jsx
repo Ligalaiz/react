@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import SearchBar from './searchBar/SearchBar';
+import SearchResult from './searchResult/SearchResult';
 import '../styles/index.scss';
 
 const App = () => {
@@ -16,6 +17,9 @@ const App = () => {
             setItems={setItems}
           />
         </div>
+      </div>
+      <div className="output__wrap">
+        <SearchResult items={items} />
       </div>
     </>
   );
