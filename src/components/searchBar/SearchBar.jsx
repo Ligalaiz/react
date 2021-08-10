@@ -1,5 +1,6 @@
 export default function SearchBar(props) {
-  const { searchRequest, setSearchRequest, setItems } = props;
+  const { searchRequest, setSearchRequest, setItems, sortType } =
+    props;
 
   const date = new Date();
   const month = date.getMonth();
@@ -8,7 +9,7 @@ export default function SearchBar(props) {
     month < 10 ? `0${month}` : month
   }-${day < 10 ? `0${day}` : day}`;
 
-  const link = `https://cors.bridged.cc/${process.env.BASE_PATH}${process.env.SEARCH_PATH}?${process.env.SEARCH_PARAM}${searchRequest}&${process.env.SEARCH_FROM}${currentDate}&${process.env.SEARCH_PAGE_SIZE}10&${process.env.SEARCH_SORT}publishedAt&${process.env.SEARCH_PAGE_NUMBER}1&${process.env.SEARCH_API_KEY}${process.env.API_KEY3}`;
+  const link = `https://cors.bridged.cc/${process.env.BASE_PATH}${process.env.SEARCH_PATH}?${process.env.SEARCH_PARAM}${searchRequest}&${process.env.SEARCH_FROM}${currentDate}&${process.env.SEARCH_PAGE_SIZE}10&${process.env.SEARCH_SORT}${sortType}&${process.env.SEARCH_PAGE_NUMBER}1&${process.env.SEARCH_API_KEY}${process.env.API_KEY3}`;
 
   const data = {
     method: 'GET',
