@@ -7,6 +7,7 @@ import '../styles/index.scss';
 
 const App = () => {
   const [sortType, setSortTipe] = useState('relevancy');
+  const [pageSize, setPageSize] = useState('1');
   const [pageTotal, setPageTotal] = useState(0);
   const [items, setItems] = useState([]);
   const [searchRequest, setSearchRequest] = useState('');
@@ -19,6 +20,7 @@ const App = () => {
             searchRequest={searchRequest}
             setSearchRequest={setSearchRequest}
             setPageTotal={setPageTotal}
+            pageSize={pageSize}
             setSortTipe={setSortTipe}
             setItems={setItems}
             sortType={sortType}
@@ -31,6 +33,8 @@ const App = () => {
           <PageBar
             items={items}
             pageTotal={pageTotal}
+            pageSize={pageSize}
+            setPageSize={setPageSize}
           />
         </div>
       </div>
