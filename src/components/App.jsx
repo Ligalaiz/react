@@ -2,6 +2,7 @@ import { useState } from 'react';
 import SearchBar from './searchBar/SearchBar';
 import SearchResult from './searchResult/SearchResult';
 import SortBar from './sortBar/SortBar';
+import PageBar from './pageBar/PageBar';
 import '../styles/index.scss';
 
 const App = () => {
@@ -23,6 +24,9 @@ const App = () => {
         </div>
         <div className="sort__wrap">
           <SortBar setSortTipe={setSortTipe} sortType={sortType} />
+        </div>
+        <div className="pageBar__wrap">
+          <PageBar />
         </div>
       </div>
       <div className="output__wrap">
