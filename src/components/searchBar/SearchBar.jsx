@@ -9,6 +9,7 @@ export default function SearchBar(props) {
     setPageTotal,
     setPageNumber,
     setError,
+    setLoading,
   } = props;
 
   const date = new Date();
@@ -35,6 +36,7 @@ export default function SearchBar(props) {
     }
 
     try {
+      setLoading(true);
       setItems([]);
 
       const response = await fetch(url, data).catch((e) =>
@@ -50,9 +52,11 @@ export default function SearchBar(props) {
 
       const pages = Math.floor(result.totalResults / pageSize);
       setPageTotal(pages);
+      setLoading(false);
       setItems(result.articles || []);
     } catch (err) {
       setError(err);
+      setLoading(false);
       setPageNumber('1');
     }
   };

@@ -3,6 +3,7 @@ import SearchBar from './searchBar/SearchBar';
 import SearchResult from './searchResult/SearchResult';
 import SortBar from './sortBar/SortBar';
 import PageBar from './pageBar/PageBar';
+import Loader from './loader/Loader';
 import '../styles/index.scss';
 
 const App = () => {
@@ -13,12 +14,14 @@ const App = () => {
   const [pageTotal, setPageTotal] = useState(0);
   const [items, setItems] = useState([]);
   const [searchRequest, setSearchRequest] = useState('');
+  const [loading, setLoading] = useState(false);
 
   return (
     <>
       <div className="control">
         <div className="form__wrap">
           <SearchBar
+            setLoading={setLoading}
             setError={setError}
             searchRequest={searchRequest}
             setSearchRequest={setSearchRequest}
@@ -62,6 +65,7 @@ const App = () => {
           </div>
         </div>
       )}
+      {loading && <Loader />}
     </>
   );
 };
