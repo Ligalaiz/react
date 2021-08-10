@@ -120,3 +120,30 @@ img {
 
 	list-style: none;
 }
+
+.message {
+	&__wrap {
+		position: relative;
+		top: 250px;
+		left: 50%;
+		max-width: 800px;
+		transform: translate(-50%, -50%);
+		background-color: #ff00005e;
+		border-radius: 20px;
+		padding: 10px;
+		text-align: center;
+		color: $white-color;
+		font-size: 18px;
+		font-weight: 600;
+		box-shadow: 0 7px 15px rgb(0 0 0 / 25%), 0 4px 6px rgb(0 0 0 / 22%);
+	}
+
+	&__btn {
+		border: none;
+		padding: 7px;
+		margin: 10px;
+		border-radius: 7px;
+		font-size: 16px;
+		box-shadow: 0 7px 15px rgb(0 0 0 / 25%), 0 4px 6px rgb(0 0 0 / 22%);
+	}
+}
