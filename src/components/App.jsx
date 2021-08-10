@@ -6,6 +6,7 @@ import PageBar from './pageBar/PageBar';
 import '../styles/index.scss';
 
 const App = () => {
+  const [error, setError] = useState(null);
   const [sortType, setSortTipe] = useState('relevancy');
   const [pageSize, setPageSize] = useState('1');
   const [pageNumber, setPageNumber] = useState('1');
@@ -18,6 +19,7 @@ const App = () => {
       <div className="control">
         <div className="form__wrap">
           <SearchBar
+            setError={setError}
             searchRequest={searchRequest}
             setSearchRequest={setSearchRequest}
             setPageTotal={setPageTotal}
@@ -46,6 +48,20 @@ const App = () => {
       <div className="output__wrap">
         <SearchResult items={items} />
       </div>
+      {error && (
+        <div className="message__wrap">
+          <div className="message">
+            <p>{error.message}</p>
+            <button
+              className="message__btn"
+              type="button"
+              onClick={() => setError(null)}
+            >
+              close
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 };
