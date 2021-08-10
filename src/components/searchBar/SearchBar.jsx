@@ -5,7 +5,9 @@ export default function SearchBar(props) {
     setItems,
     sortType,
     pageSize,
+    pageNumber,
     setPageTotal,
+    setPageNumber,
   } = props;
 
   const date = new Date();
@@ -15,7 +17,7 @@ export default function SearchBar(props) {
     month < 10 ? `0${month}` : month
   }-${day < 10 ? `0${day}` : day}`;
 
-  const link = `https://cors.bridged.cc/${process.env.BASE_PATH}${process.env.SEARCH_PATH}?${process.env.SEARCH_PARAM}${searchRequest}&${process.env.SEARCH_FROM}${currentDate}&${process.env.SEARCH_PAGE_SIZE}${pageSize}&${process.env.SEARCH_SORT}${sortType}&${process.env.SEARCH_PAGE_NUMBER}1&${process.env.SEARCH_API_KEY}${process.env.API_KEY3}`;
+  const link = `https://cors.bridged.cc/${process.env.BASE_PATH}${process.env.SEARCH_PATH}?${process.env.SEARCH_PARAM}${searchRequest}&${process.env.SEARCH_FROM}${currentDate}&${process.env.SEARCH_PAGE_SIZE}${pageSize}&${process.env.SEARCH_SORT}${sortType}&${process.env.SEARCH_PAGE_NUMBER}${pageNumber}&${process.env.SEARCH_API_KEY}${process.env.API_KEY3}`;
 
   const data = {
     method: 'GET',
@@ -50,6 +52,7 @@ export default function SearchBar(props) {
       setItems(result.articles || []);
     } catch (err) {
       console.log(err.message);
+      setPageNumber('1');
     }
   };
 

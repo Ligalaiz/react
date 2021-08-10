@@ -8,6 +8,7 @@ import '../styles/index.scss';
 const App = () => {
   const [sortType, setSortTipe] = useState('relevancy');
   const [pageSize, setPageSize] = useState('1');
+  const [pageNumber, setPageNumber] = useState('1');
   const [pageTotal, setPageTotal] = useState(0);
   const [items, setItems] = useState([]);
   const [searchRequest, setSearchRequest] = useState('');
@@ -20,6 +21,8 @@ const App = () => {
             searchRequest={searchRequest}
             setSearchRequest={setSearchRequest}
             setPageTotal={setPageTotal}
+            pageNumber={pageNumber}
+            setPageNumber={setPageNumber}
             pageSize={pageSize}
             setSortTipe={setSortTipe}
             setItems={setItems}
@@ -35,6 +38,8 @@ const App = () => {
             pageTotal={pageTotal}
             pageSize={pageSize}
             setPageSize={setPageSize}
+            pageNumber={pageNumber}
+            setPageNumber={setPageNumber}
           />
         </div>
       </div>
