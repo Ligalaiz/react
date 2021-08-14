@@ -14,15 +14,14 @@ module.exports = merge(common, {
     filename: '[name].[hash:10].js',
     chunkFilename: '[name].[hash:10].js',
     assetModuleFilename: 'assets/[name].[hash:10].[ext]',
+    publicPath: '/',
   },
 
   devServer: {
     hot: true,
     open: true,
     port: 3000,
-    watchOptions: {
-      aggregateTimeout: 100,
-    },
+    historyApiFallback: true,
     contentBase: path.resolve(__dirname, './dist'),
   },
 

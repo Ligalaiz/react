@@ -63,7 +63,8 @@ module.exports = {
     new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({
       template: path.join('./src', 'index.html'),
-      filename: './index.html',
+      filename: 'index.html',
+      inject: true,
     }),
 
     new Dotenv(),
