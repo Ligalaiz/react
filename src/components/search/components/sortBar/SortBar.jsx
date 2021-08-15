@@ -1,13 +1,26 @@
+import { get, set, setQueryUtils } from '@/utils';
+import { useHistory, useLocation } from 'react-router-dom';
+
 export default function SortBar(props) {
   const { sortType, setSortTipe } = props;
+  const router = useHistory();
+  const { search } = useLocation();
+
   const style = {
-    backgroundColor: '#47ffa56b',
+    backgroundColor: '#D43728',
+    color: '#ffffff',
     borderColor: '47ffa56b',
     boxShadow: '0 7px 15px rgb(0 0 0 / 25%), 0 4px 6px rgb(0 0 0 / 22%)',
   };
 
   function handleClick(e) {
-    setSortTipe(e.target.name);
+    const sortValue = e.target.name;
+    setSortTipe(sortValue);
+
+    const requestData = get('requestData');
+    set('requestData', { ...requestData, sortType: sortValue });
+
+    setQueryUtils({ search, router, param: 'sortType', paramValue: sortValue });
   }
 
   return (

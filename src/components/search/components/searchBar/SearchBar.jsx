@@ -1,3 +1,7 @@
+import { set, get, setQueryUtils } from '@/utils';
+import getSearchDataUtils from '@/utils/getSearchData.utils';
+import { useHistory, useLocation } from 'react-router-dom';
+
 export default function SearchBar(props) {
   const {
     searchRequest,
@@ -11,6 +15,9 @@ export default function SearchBar(props) {
     setError,
     setLoading,
   } = props;
+
+  const router = useHistory();
+  const { search } = useLocation();
 
   const date = new Date();
   const month = date.getMonth();
@@ -65,7 +72,18 @@ export default function SearchBar(props) {
     e.preventDefault();
 
     if (searchRequest.length > 2) {
+      const requestData = get('requestData');
       loadSearchRequest(link);
+
+      set('requestData', { ...requestData, searchRequest });
+      getSearchDataUtils(props);
+      setQueryUtils({
+        search,
+        router,
+        requestData,
+        param: 'searchRequest',
+        paramValue: searchRequest,
+      });
     }
   };
 

@@ -4,4 +4,13 @@ import hasQueryUtils from './hasQuery.utils';
 import delayUtils from './delay.utils';
 import getUrlUtils from './getUrl.utils';
 
-export { set, get, del, getQueryUtils, hasQueryUtils, delayUtils, getUrlUtils };
+export {
+  set,
+  get,
+  del,
+  setQueryUtils,
+  getQueryUtils,
+  hasQueryUtils,
+  delayUtils,
+  getUrlUtils,
+};
