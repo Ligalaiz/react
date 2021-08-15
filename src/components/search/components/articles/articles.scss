@@ -1,3 +1,6 @@
+
+@import "../../styles/variables";
+
 .output__wrap {
   display: flex;
   flex-direction: column;
@@ -6,17 +9,43 @@
 
 .article {
   display: flex;
-  padding: 10px;
+  padding: 30px 10px;
   justify-content: flex-start;
   gap: 2rem;
-  
+
+  color: #080808;
+
   transition: all .2s linear;
+  &__wrap {
+    min-width: 320px;
+  padding: 0 10px;
+  }
   &__image {
     min-width: 300px;
+    border-radius: 15px;
   }
   &__description {
     max-width: 800px;
   }
+  &__short-description {
+    width: 370px;
+    margin-bottom: 20px;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    overflow:hidden;
+  }
+  &__title {
+    margin-bottom: 10px;
+  }
+  &__content {
+    margin-bottom: 20px;
+
+    text-align: justify;
+    color:$black-color;
+  }
+
   &:hover {
     box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
   }
