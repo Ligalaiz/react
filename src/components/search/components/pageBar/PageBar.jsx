@@ -13,7 +13,6 @@ export default function PageBar(props) {
         items={items}
         pageNumber={pageNumber}
         setPageNumber={setPageNumber}
-        pageTotal={pageTotal}
       />
       <PageTotal pageTotal={pageTotal} />
     </>
