@@ -1,1 +1,7 @@
 @import "../../styles/variables";
+
+.details {
+  &__link {
+    color: $black-color;
+  }
+}
