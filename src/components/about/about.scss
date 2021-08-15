@@ -1,0 +1,15 @@
+.about {
+  &__title {
+    margin: 10px 0;
+
+    font-weight: 600;
+    text-align: center;
+  }
+  &__text {
+    text-indent: 1.5rem;
+    text-align: justify;
+  }
+  &__link {
+    font-weight: 600;
+  }
+}
