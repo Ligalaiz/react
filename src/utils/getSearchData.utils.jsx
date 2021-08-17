@@ -1,30 +1,21 @@
-import { set, delayUtils, getUrlUtils } from '@/utils';
-import requestUtils from '@/utils/request.utils';
+import { getUrlUtils } from '@/utils';
+import { addErrorAction } from '@/store/errorReducer';
+import { pageNumberAction } from '@/store/pageNumberReducer';
+import { addLoadingAction } from '@/store/loadingReducer';
+import { fetchArticles } from '@/asyncActions/articles';
 
-export default async function getSearchDataUtils({
-  setPageNumber,
-  searchRequest,
-  setPageTotal,
-  setLoading,
-  pageNumber,
-  setItems,
-  sortType,
-  setError,
-  pageSize,
-}) {
+export default async function getSearchDataUtils(
+  { searchRequest, pageNumber, sortType, pageSize },
+  dispatch,
+) {
   const url = getUrlUtils({ searchRequest, pageSize, sortType, pageNumber });
 
   try {
-    setLoading(true);
-
-    const result = await requestUtils({ setItems, delayUtils, url, set });
-    const pages = Math.floor(result.totalResults / pageSize);
-
-    setPageTotal(pages);
-    setLoading(false);
+    dispatch(addLoadingAction(true));
+    dispatch(fetchArticles({ url, pageSize }));
   } catch (err) {
-    setError(err);
-    setLoading(false);
-    setPageNumber('1');
+    dispatch(addLoadingAction(false));
+    dispatch(addErrorAction(err));
+    dispatch(pageNumberAction('1'));
   }
 }
