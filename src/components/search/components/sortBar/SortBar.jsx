@@ -1,8 +1,12 @@
 import { get, set, setQueryUtils } from '@/utils';
 import { useHistory, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { sortTypeAction } from '@/store/sortTypeReducer';
 
-export default function SortBar(props) {
-  const { sortType, setSortTipe } = props;
+export default function SortBar() {
+  const dispatch = useDispatch();
+  const sortType = useSelector((state) => state.sortType.sortType);
+
   const router = useHistory();
   const { search } = useLocation();
 
@@ -15,7 +19,7 @@ export default function SortBar(props) {
 
   function handleClick(e) {
     const sortValue = e.target.name;
-    setSortTipe(sortValue);
+    dispatch(sortTypeAction(sortValue));
 
     const requestData = get('requestData');
     set('requestData', { ...requestData, sortType: sortValue });
