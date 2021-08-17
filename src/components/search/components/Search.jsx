@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import { set, get, getQueryUtils, hasQueryUtils } from '@/utils';
-
-import { useSelector } from 'react-redux';
-
 import getLocalDataUtils from '@/utils/getLocalData.utils';
 import getSearchDataUtils from '@/utils/getSearchData.utils';
 import restoreQueryUtils from '@/utils/restoreQuery.utils';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { addErrorAction } from '@/store/errorReducer';
+
 import SearchResult from './searchResult/SearchResult';
 import SearchBar from './searchBar/SearchBar';
 import SortBar from './sortBar/SortBar';
@@ -15,14 +16,15 @@ import Loader from './loader/Loader';
 import '../styles/index.scss';
 
 const Search = () => {
+  const dispatch = useDispatch();
   const loading = useSelector((state) => state.loading.loading);
+  const error = useSelector((state) => state.error.error);
 
   const [searchRequest, setSearchRequest] = useState('');
   const [sortType, setSortTipe] = useState('relevancy');
   const [pageNumber, setPageNumber] = useState('1');
   const [pageTotal, setPageTotal] = useState(0);
   const [pageSize, setPageSize] = useState('1');
-  const [error, setError] = useState(null);
   const [items, setItems] = useState([]);
   const { search } = useLocation();
   const router = useHistory();
@@ -47,7 +49,6 @@ const Search = () => {
         setPageNumber,
         setPageTotal,
         setItems,
-        setError,
       });
 
       setSearchRequest(queryData.searchRequest);
@@ -81,11 +82,14 @@ const Search = () => {
           setPageNumber,
           setPageTotal,
           setItems,
-          setError,
         });
       }
     }
   }, []);
+
+  function handleErrorClick() {
+    dispatch(addErrorAction(null));
+  }
 
   return (
     <>
@@ -99,7 +103,6 @@ const Search = () => {
             setSortTipe={setSortTipe}
             sortType={sortType}
             setPageTotal={setPageTotal}
-            setError={setError}
             pageSize={pageSize}
             setItems={setItems}
           />
@@ -128,7 +131,7 @@ const Search = () => {
             <button
               className="message__btn"
               type="button"
-              onClick={() => setError(null)}
+              onClick={handleErrorClick}
             >
               close
             </button>
