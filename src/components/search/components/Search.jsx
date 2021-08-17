@@ -1,16 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import { set, get, getQueryUtils, hasQueryUtils } from '@/utils';
 import getLocalDataUtils from '@/utils/getLocalData.utils';
 import getSearchDataUtils from '@/utils/getSearchData.utils';
 import restoreQueryUtils from '@/utils/restoreQuery.utils';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { addErrorAction } from '@/store/errorReducer';
-import { pageSizeAction } from '@/store/pageSizeReducer';
+import { searchRequestAction } from '@/store/searchRequestReducer';
 import { pageNumberAction } from '@/store/pageNumberReducer';
 import { sortTypeAction } from '@/store/sortTypeReducer';
-import { searchRequestAction } from '@/store/searchRequestReducer';
+import { pageSizeAction } from '@/store/pageSizeReducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { addErrorAction } from '@/store/errorReducer';
+import { itemsAction } from '@/store/itemsReducer';
 
 import SearchResult from './searchResult/SearchResult';
 import SearchBar from './searchBar/SearchBar';
@@ -21,16 +22,15 @@ import '../styles/index.scss';
 
 const Search = () => {
   const dispatch = useDispatch();
+  const pageNumber = useSelector((state) => state.pageNumber.pageNumber);
+  const pageSize = useSelector((state) => state.pageSize.pageSize);
+  const sortType = useSelector((state) => state.sortType.sortType);
   const loading = useSelector((state) => state.loading.loading);
   const error = useSelector((state) => state.error.error);
-  const pageSize = useSelector((state) => state.pageSize.pageSize);
-  const pageNumber = useSelector((state) => state.pageNumber.pageNumber);
-  const sortType = useSelector((state) => state.sortType.sortType);
   const searchRequest = useSelector(
     (state) => state.searchRequest.searchRequest,
   );
 
-  const [items, setItems] = useState([]);
   const { search } = useLocation();
   const router = useHistory();
 
@@ -51,15 +51,17 @@ const Search = () => {
       dispatch(pageSizeAction(queryData.pageSize));
       dispatch(sortTypeAction(queryData.sortType));
 
-      getSearchDataUtils({
-        searchRequest: queryData.searchRequest,
-        pageNumber: queryData.pageNumber,
-        pageSize: queryData.pageSize,
-        sortType: queryData.sortType,
-        setItems,
-      });
+      getSearchDataUtils(
+        {
+          searchRequest: queryData.searchRequest,
+          pageNumber: queryData.pageNumber,
+          pageSize: queryData.pageSize,
+          sortType: queryData.sortType,
+        },
+        dispatch,
+      );
     } else if (localItems) {
-      setItems(localItems);
+      dispatch(itemsAction(localItems));
     } else {
       const LocalData = getLocalDataUtils({
         searchRequest,
@@ -77,13 +79,15 @@ const Search = () => {
       dispatch(sortTypeAction(LocalData.sortType));
 
       if (LocalData.searchRequest && localItems.length === 0) {
-        getSearchDataUtils({
-          searchRequest: LocalData.searchRequest,
-          pageNumber: LocalData.pageNumber,
-          pageSize: LocalData.pageSize,
-          sortType: LocalData.sortType,
-          setItems,
-        });
+        getSearchDataUtils(
+          {
+            searchRequest: LocalData.searchRequest,
+            pageNumber: LocalData.pageNumber,
+            pageSize: LocalData.pageSize,
+            sortType: LocalData.sortType,
+          },
+          dispatch,
+        );
       }
     }
   }, []);
@@ -96,17 +100,17 @@ const Search = () => {
     <>
       <div className="control">
         <div className="form__wrap">
-          <SearchBar setItems={setItems} />
+          <SearchBar />
         </div>
         <div className="sort__wrap">
           <SortBar />
         </div>
         <div className="pageBar__wrap">
-          <PageBar items={items} />
+          <PageBar />
         </div>
       </div>
       <div className="output__wrap">
-        <SearchResult items={items} />
+        <SearchResult />
       </div>
       {error && (
         <div className="message__wrap">
