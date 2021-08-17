@@ -1,8 +1,10 @@
 import { Link, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Articles from '../articles/Arcicles';
 
-export default function SearchResult(props) {
-  const { items } = props;
+export default function SearchResult() {
+  const items = useSelector((state) => state.items.items);
+
   const { search } = useLocation();
 
   if (!items) return false;
