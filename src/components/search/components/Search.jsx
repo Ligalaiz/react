@@ -8,6 +8,7 @@ import restoreQueryUtils from '@/utils/restoreQuery.utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { addErrorAction } from '@/store/errorReducer';
 import { pageSizeAction } from '@/store/pageSizeReducer';
+import { pageNumberAction } from '@/store/pageNumberReducer';
 
 import SearchResult from './searchResult/SearchResult';
 import SearchBar from './searchBar/SearchBar';
@@ -21,10 +22,10 @@ const Search = () => {
   const loading = useSelector((state) => state.loading.loading);
   const error = useSelector((state) => state.error.error);
   const pageSize = useSelector((state) => state.pageSize.pageSize);
+  const pageNumber = useSelector((state) => state.pageNumber.pageNumber);
 
   const [searchRequest, setSearchRequest] = useState('');
   const [sortType, setSortTipe] = useState('relevancy');
-  const [pageNumber, setPageNumber] = useState('1');
   const [pageTotal, setPageTotal] = useState(0);
   const [items, setItems] = useState([]);
   const { search } = useLocation();
@@ -43,19 +44,18 @@ const Search = () => {
       set('requestData', queryData);
 
       dispatch(pageSizeAction(queryData.pageSize));
+      dispatch(pageNumberAction(queryData.pageNumber));
 
       getSearchDataUtils({
         searchRequest: queryData.searchRequest,
         pageNumber: queryData.pageNumber,
         pageSize: queryData.pageSize,
         sortType: queryData.sortType,
-        setPageNumber,
         setPageTotal,
         setItems,
       });
 
       setSearchRequest(queryData.searchRequest);
-      setPageNumber(queryData.pageNumber);
       setSortTipe(queryData.sortType);
     } else if (localItems) {
       setItems(localItems);
@@ -71,9 +71,9 @@ const Search = () => {
       set('requestData', queryData);
 
       dispatch(pageSizeAction(LocalData.pageSize));
+      dispatch(pageNumberAction(LocalData.pageNumber));
 
       setSearchRequest(LocalData.searchRequest);
-      setPageNumber(LocalData.pageNumber);
       setSortTipe(LocalData.sortType);
 
       if (LocalData.searchRequest && localItems.length === 0) {
@@ -82,7 +82,6 @@ const Search = () => {
           pageNumber: LocalData.pageNumber,
           pageSize: LocalData.pageSize,
           sortType: LocalData.sortType,
-          setPageNumber,
           setPageTotal,
           setItems,
         });
@@ -101,8 +100,6 @@ const Search = () => {
           <SearchBar
             setSearchRequest={setSearchRequest}
             searchRequest={searchRequest}
-            setPageNumber={setPageNumber}
-            pageNumber={pageNumber}
             setSortTipe={setSortTipe}
             sortType={sortType}
             setPageTotal={setPageTotal}
@@ -113,12 +110,7 @@ const Search = () => {
           <SortBar setSortTipe={setSortTipe} sortType={sortType} />
         </div>
         <div className="pageBar__wrap">
-          <PageBar
-            setPageNumber={setPageNumber}
-            pageNumber={pageNumber}
-            pageTotal={pageTotal}
-            items={items}
-          />
+          <PageBar pageTotal={pageTotal} items={items} />
         </div>
       </div>
       <div className="output__wrap">
