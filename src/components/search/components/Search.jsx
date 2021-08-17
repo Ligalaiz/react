@@ -10,6 +10,7 @@ import { addErrorAction } from '@/store/errorReducer';
 import { pageSizeAction } from '@/store/pageSizeReducer';
 import { pageNumberAction } from '@/store/pageNumberReducer';
 import { sortTypeAction } from '@/store/sortTypeReducer';
+import { searchRequestAction } from '@/store/searchRequestReducer';
 
 import SearchResult from './searchResult/SearchResult';
 import SearchBar from './searchBar/SearchBar';
@@ -25,8 +26,10 @@ const Search = () => {
   const pageSize = useSelector((state) => state.pageSize.pageSize);
   const pageNumber = useSelector((state) => state.pageNumber.pageNumber);
   const sortType = useSelector((state) => state.sortType.sortType);
+  const searchRequest = useSelector(
+    (state) => state.searchRequest.searchRequest,
+  );
 
-  const [searchRequest, setSearchRequest] = useState('');
   const [pageTotal, setPageTotal] = useState(0);
   const [items, setItems] = useState([]);
   const { search } = useLocation();
@@ -44,6 +47,7 @@ const Search = () => {
     if (search && hasQueryUtils(search, 'searchRequest')) {
       set('requestData', queryData);
 
+      dispatch(searchRequestAction(queryData.searchRequest));
       dispatch(pageNumberAction(queryData.pageNumber));
       dispatch(pageSizeAction(queryData.pageSize));
       dispatch(sortTypeAction(queryData.sortType));
@@ -56,8 +60,6 @@ const Search = () => {
         setPageTotal,
         setItems,
       });
-
-      setSearchRequest(queryData.searchRequest);
     } else if (localItems) {
       setItems(localItems);
     } else {
@@ -71,11 +73,10 @@ const Search = () => {
       restoreQueryUtils({ router, search, requestData: LocalData });
       set('requestData', queryData);
 
+      dispatch(searchRequestAction(LocalData.searchRequest));
       dispatch(pageNumberAction(LocalData.pageNumber));
       dispatch(pageSizeAction(LocalData.pageSize));
       dispatch(sortTypeAction(LocalData.sortType));
-
-      setSearchRequest(LocalData.searchRequest);
 
       if (LocalData.searchRequest && localItems.length === 0) {
         getSearchDataUtils({
@@ -98,12 +99,7 @@ const Search = () => {
     <>
       <div className="control">
         <div className="form__wrap">
-          <SearchBar
-            setSearchRequest={setSearchRequest}
-            searchRequest={searchRequest}
-            setPageTotal={setPageTotal}
-            setItems={setItems}
-          />
+          <SearchBar setPageTotal={setPageTotal} setItems={setItems} />
         </div>
         <div className="sort__wrap">
           <SortBar />
