@@ -1,20 +1,35 @@
 import { set, get, setQueryUtils } from '@/utils';
 import getSearchDataUtils from '@/utils/getSearchData.utils';
 import { useHistory, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { searchRequestAction } from '@/store/searchRequestReducer';
 
-export default function SearchBar(props) {
-  const { setSearchRequest, searchRequest } = props;
+export default function SearchBar() {
+  const dispatch = useDispatch();
+  const pageNumber = useSelector((state) => state.pageNumber.pageNumber);
+  const pageSize = useSelector((state) => state.pageSize.pageSize);
+  const sortType = useSelector((state) => state.sortType.sortType);
+  const pageTotal = useSelector((state) => state.pageTotal.pageTotal);
+  const searchRequest = useSelector(
+    (state) => state.searchRequest.searchRequest,
+  );
+
   const router = useHistory();
   const { search } = useLocation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    console.log('request');
     if (searchRequest.length > 2) {
       const requestData = get('requestData');
 
       set('requestData', { ...requestData, searchRequest });
-      getSearchDataUtils(props);
+
+      getSearchDataUtils(
+        { pageSize, pageNumber, sortType, pageTotal, searchRequest },
+        dispatch,
+      );
+
       setQueryUtils({
         search,
         router,
@@ -27,7 +42,7 @@ export default function SearchBar(props) {
 
   const handleSearchChange = (e) => {
     const requestValue = e.target.value;
-    setSearchRequest(requestValue);
+    dispatch(searchRequestAction(requestValue));
   };
 
   return (
