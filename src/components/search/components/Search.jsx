@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import { set, get, getQueryUtils, hasQueryUtils } from '@/utils';
+
+import { useSelector } from 'react-redux';
+
 import getLocalDataUtils from '@/utils/getLocalData.utils';
 import getSearchDataUtils from '@/utils/getSearchData.utils';
 import restoreQueryUtils from '@/utils/restoreQuery.utils';
@@ -12,12 +15,13 @@ import Loader from './loader/Loader';
 import '../styles/index.scss';
 
 const Search = () => {
+  const loading = useSelector((state) => state.loading.loading);
+
   const [searchRequest, setSearchRequest] = useState('');
   const [sortType, setSortTipe] = useState('relevancy');
   const [pageNumber, setPageNumber] = useState('1');
   const [pageTotal, setPageTotal] = useState(0);
   const [pageSize, setPageSize] = useState('1');
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [items, setItems] = useState([]);
   const { search } = useLocation();
@@ -42,7 +46,6 @@ const Search = () => {
         sortType: queryData.sortType,
         setPageNumber,
         setPageTotal,
-        setLoading,
         setItems,
         setError,
       });
@@ -77,7 +80,6 @@ const Search = () => {
           sortType: LocalData.sortType,
           setPageNumber,
           setPageTotal,
-          setLoading,
           setItems,
           setError,
         });
@@ -97,7 +99,6 @@ const Search = () => {
             setSortTipe={setSortTipe}
             sortType={sortType}
             setPageTotal={setPageTotal}
-            setLoading={setLoading}
             setError={setError}
             pageSize={pageSize}
             setItems={setItems}
