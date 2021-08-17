@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addErrorAction } from '@/store/errorReducer';
 import { pageSizeAction } from '@/store/pageSizeReducer';
 import { pageNumberAction } from '@/store/pageNumberReducer';
+import { sortTypeAction } from '@/store/sortTypeReducer';
 
 import SearchResult from './searchResult/SearchResult';
 import SearchBar from './searchBar/SearchBar';
@@ -23,9 +24,9 @@ const Search = () => {
   const error = useSelector((state) => state.error.error);
   const pageSize = useSelector((state) => state.pageSize.pageSize);
   const pageNumber = useSelector((state) => state.pageNumber.pageNumber);
+  const sortType = useSelector((state) => state.sortType.sortType);
 
   const [searchRequest, setSearchRequest] = useState('');
-  const [sortType, setSortTipe] = useState('relevancy');
   const [pageTotal, setPageTotal] = useState(0);
   const [items, setItems] = useState([]);
   const { search } = useLocation();
@@ -43,8 +44,9 @@ const Search = () => {
     if (search && hasQueryUtils(search, 'searchRequest')) {
       set('requestData', queryData);
 
-      dispatch(pageSizeAction(queryData.pageSize));
       dispatch(pageNumberAction(queryData.pageNumber));
+      dispatch(pageSizeAction(queryData.pageSize));
+      dispatch(sortTypeAction(queryData.sortType));
 
       getSearchDataUtils({
         searchRequest: queryData.searchRequest,
@@ -56,7 +58,6 @@ const Search = () => {
       });
 
       setSearchRequest(queryData.searchRequest);
-      setSortTipe(queryData.sortType);
     } else if (localItems) {
       setItems(localItems);
     } else {
@@ -70,11 +71,11 @@ const Search = () => {
       restoreQueryUtils({ router, search, requestData: LocalData });
       set('requestData', queryData);
 
-      dispatch(pageSizeAction(LocalData.pageSize));
       dispatch(pageNumberAction(LocalData.pageNumber));
+      dispatch(pageSizeAction(LocalData.pageSize));
+      dispatch(sortTypeAction(LocalData.sortType));
 
       setSearchRequest(LocalData.searchRequest);
-      setSortTipe(LocalData.sortType);
 
       if (LocalData.searchRequest && localItems.length === 0) {
         getSearchDataUtils({
@@ -100,14 +101,12 @@ const Search = () => {
           <SearchBar
             setSearchRequest={setSearchRequest}
             searchRequest={searchRequest}
-            setSortTipe={setSortTipe}
-            sortType={sortType}
             setPageTotal={setPageTotal}
             setItems={setItems}
           />
         </div>
         <div className="sort__wrap">
-          <SortBar setSortTipe={setSortTipe} sortType={sortType} />
+          <SortBar />
         </div>
         <div className="pageBar__wrap">
           <PageBar pageTotal={pageTotal} items={items} />

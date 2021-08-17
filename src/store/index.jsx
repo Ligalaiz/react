@@ -6,12 +6,14 @@ import { loadingReducer } from './loadingReducer';
 import { errorReducer } from './errorReducer';
 import { pageSizeReducer } from './pageSizeReducer';
 import { pageNumberReducer } from './pageNumberReducer';
+import { sortTypeReducer } from './sortTypeReducer';
 
 const rootReducer = combineReducers({
   loading: loadingReducer,
   error: errorReducer,
   pageSize: pageSizeReducer,
   pageNumber: pageNumberReducer,
+  sortType: sortTypeReducer,
 });
 
 export const store = createStore(
