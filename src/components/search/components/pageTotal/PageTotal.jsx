@@ -1,5 +1,7 @@
-export default function PageTotal(props) {
-  const { pageTotal } = props;
+import { useSelector } from 'react-redux';
+
+export default function PageTotal() {
+  const pageTotal = useSelector((state) => state.pageTotal.pageTotal);
 
   return (
     <div className="pageTotal">
