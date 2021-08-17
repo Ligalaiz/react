@@ -7,6 +7,7 @@ import restoreQueryUtils from '@/utils/restoreQuery.utils';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { addErrorAction } from '@/store/errorReducer';
+import { pageSizeAction } from '@/store/pageSizeReducer';
 
 import SearchResult from './searchResult/SearchResult';
 import SearchBar from './searchBar/SearchBar';
@@ -19,12 +20,12 @@ const Search = () => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.loading.loading);
   const error = useSelector((state) => state.error.error);
+  const pageSize = useSelector((state) => state.pageSize.pageSize);
 
   const [searchRequest, setSearchRequest] = useState('');
   const [sortType, setSortTipe] = useState('relevancy');
   const [pageNumber, setPageNumber] = useState('1');
   const [pageTotal, setPageTotal] = useState(0);
-  const [pageSize, setPageSize] = useState('1');
   const [items, setItems] = useState([]);
   const { search } = useLocation();
   const router = useHistory();
@@ -41,6 +42,8 @@ const Search = () => {
     if (search && hasQueryUtils(search, 'searchRequest')) {
       set('requestData', queryData);
 
+      dispatch(pageSizeAction(queryData.pageSize));
+
       getSearchDataUtils({
         searchRequest: queryData.searchRequest,
         pageNumber: queryData.pageNumber,
@@ -53,7 +56,6 @@ const Search = () => {
 
       setSearchRequest(queryData.searchRequest);
       setPageNumber(queryData.pageNumber);
-      setPageSize(queryData.pageSize);
       setSortTipe(queryData.sortType);
     } else if (localItems) {
       setItems(localItems);
@@ -68,9 +70,10 @@ const Search = () => {
       restoreQueryUtils({ router, search, requestData: LocalData });
       set('requestData', queryData);
 
+      dispatch(pageSizeAction(LocalData.pageSize));
+
       setSearchRequest(LocalData.searchRequest);
       setPageNumber(LocalData.pageNumber);
-      setPageSize(LocalData.pageSize);
       setSortTipe(LocalData.sortType);
 
       if (LocalData.searchRequest && localItems.length === 0) {
@@ -103,7 +106,6 @@ const Search = () => {
             setSortTipe={setSortTipe}
             sortType={sortType}
             setPageTotal={setPageTotal}
-            pageSize={pageSize}
             setItems={setItems}
           />
         </div>
@@ -114,8 +116,6 @@ const Search = () => {
           <PageBar
             setPageNumber={setPageNumber}
             pageNumber={pageNumber}
-            setPageSize={setPageSize}
-            pageSize={pageSize}
             pageTotal={pageTotal}
             items={items}
           />
