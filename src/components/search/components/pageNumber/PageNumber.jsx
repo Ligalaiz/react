@@ -1,10 +1,13 @@
 import { get, set, setQueryUtils } from '@/utils';
 import { useHistory, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { pageNumberAction } from '@/store/pageNumberReducer';
 
-export default function PageSize(props) {
-  const { pageNumber, setPageNumber } = props;
+export default function PageSize() {
   const router = useHistory();
   const { search } = useLocation();
+  const dispatch = useDispatch();
+  const pageNumber = useSelector((state) => state.pageNumber.pageNumber);
 
   function handlerChange(e) {
     let currentNumber;
@@ -13,7 +16,7 @@ export default function PageSize(props) {
     } else {
       currentNumber = e.target.value;
     }
-    setPageNumber(currentNumber);
+    dispatch(pageNumberAction(currentNumber));
 
     const requestData = get('requestData');
     set('requestData', { ...requestData, pageNumber: currentNumber });
