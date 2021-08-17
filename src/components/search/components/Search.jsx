@@ -30,7 +30,6 @@ const Search = () => {
     (state) => state.searchRequest.searchRequest,
   );
 
-  const [pageTotal, setPageTotal] = useState(0);
   const [items, setItems] = useState([]);
   const { search } = useLocation();
   const router = useHistory();
@@ -57,7 +56,6 @@ const Search = () => {
         pageNumber: queryData.pageNumber,
         pageSize: queryData.pageSize,
         sortType: queryData.sortType,
-        setPageTotal,
         setItems,
       });
     } else if (localItems) {
@@ -84,7 +82,6 @@ const Search = () => {
           pageNumber: LocalData.pageNumber,
           pageSize: LocalData.pageSize,
           sortType: LocalData.sortType,
-          setPageTotal,
           setItems,
         });
       }
@@ -99,13 +96,13 @@ const Search = () => {
     <>
       <div className="control">
         <div className="form__wrap">
-          <SearchBar setPageTotal={setPageTotal} setItems={setItems} />
+          <SearchBar setItems={setItems} />
         </div>
         <div className="sort__wrap">
           <SortBar />
         </div>
         <div className="pageBar__wrap">
-          <PageBar pageTotal={pageTotal} items={items} />
+          <PageBar items={items} />
         </div>
       </div>
       <div className="output__wrap">

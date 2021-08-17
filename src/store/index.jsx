@@ -8,6 +8,7 @@ import { pageSizeReducer } from './pageSizeReducer';
 import { pageNumberReducer } from './pageNumberReducer';
 import { sortTypeReducer } from './sortTypeReducer';
 import { searchRequestReducer } from './searchRequestReducer';
+import { pageTotalReducer } from './pageTotalReducer';
 
 const rootReducer = combineReducers({
   loading: loadingReducer,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   pageNumber: pageNumberReducer,
   sortType: sortTypeReducer,
   searchRequest: searchRequestReducer,
+  pageTotal: pageTotalReducer,
 });
 
 export const store = createStore(
