@@ -1,23 +1,32 @@
 import { useParams, Link, useHistory, useLocation } from 'react-router-dom';
-import getDetailsDataUtils from '@/utils/getDetailsData.utils';
 import defaultImg from '@/assets/img/js.gif';
-import { useEffect, useState } from 'react';
-import { get } from '@/utils';
+import { useDispatch, useSelector } from 'react-redux';
+import { addErrorAction } from '@/store/errorReducer';
+import getSearchDataUtils from '@/utils/getSearchData.utils';
+import { useEffect } from 'react';
+import { get, getQueryUtils } from '@/utils';
 import './details.scss';
 
 const Details = () => {
-  const [items, setItems] = useState([]);
-  const [error, setError] = useState(null);
+  const dispatch = useDispatch();
+  const items = useSelector((state) => state.items.items);
+  const error = useSelector((state) => state.error.error);
   const router = useHistory();
   const { search } = useLocation();
   const { id } = useParams();
 
   useEffect(() => {
-    getDetailsDataUtils({
-      setItems,
-      search,
-      setError,
-    });
+    const { pageNumber, searchRequest, pageSize, sortType } =
+      getQueryUtils(search);
+    getSearchDataUtils(
+      {
+        searchRequest,
+        pageNumber,
+        sortType,
+        pageSize,
+      },
+      dispatch,
+    );
   }, []);
 
   const localItems = get('items');
@@ -39,6 +48,10 @@ const Details = () => {
   const currentDate = `${date.getFullYear()}-${
     month < 10 ? `0${month}` : month
   }-${day < 10 ? `0${day}` : day}`;
+
+  function handleErrorClick() {
+    dispatch(addErrorAction(null));
+  }
 
   return (
     <>
@@ -95,7 +108,7 @@ const Details = () => {
             <button
               className="message__btn"
               type="button"
-              onClick={() => setError(null)}
+              onClick={handleErrorClick}
             >
               close
             </button>
