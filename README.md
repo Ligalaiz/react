@@ -7,3 +7,5 @@
 ### 3. **[API](https://github.com/Ligalaiz/react/tree/react-api)**
 
 ### 4. **[Router](https://github.com/Ligalaiz/react/tree/react-router)**
+
+### 5. **[Redux](https://github.com/Ligalaiz/react/tree/react-redux-task)**
