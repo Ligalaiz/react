@@ -6,7 +6,6 @@ import { sortTypeAction } from '@/store/sortTypeReducer';
 export default function SortBar() {
   const dispatch = useDispatch();
   const sortType = useSelector((state) => state.sortType.sortType);
-
   const router = useHistory();
   const { search } = useLocation();
 

@@ -4,7 +4,6 @@ import Articles from '../articles/Arcicles';
 
 export default function SearchResult() {
   const items = useSelector((state) => state.items.items);
-
   const { search } = useLocation();
 
   if (!items) return false;

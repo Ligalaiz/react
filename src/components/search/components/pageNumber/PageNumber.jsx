@@ -3,7 +3,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { pageNumberAction } from '@/store/pageNumberReducer';
 
-export default function PageSize() {
+export default function PageNumber() {
   const router = useHistory();
   const { search } = useLocation();
   const dispatch = useDispatch();
