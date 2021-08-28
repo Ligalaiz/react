@@ -9,3 +9,5 @@
 ### 4. **[Router](https://github.com/Ligalaiz/react/tree/react-router)**
 
 ### 5. **[Redux](https://github.com/Ligalaiz/react/tree/react-redux-task)**
+
+### 6. **[Testing](https://github.com/Ligalaiz/react/tree/react-testing)**
