@@ -1,12 +1,12 @@
 import './error.scss';
-import bg from '@/assets/img/bg.jpg';
-import message from '@/assets/img/message.png';
-import octopus from '@/assets/img/octopus.png';
-import spaceship from '@/assets/img/spaceship.png';
-import circle from '@/assets/img/circle.png';
-import shadow from '@/assets/img/shadow.png';
-import house from '@/assets/img/house.png';
-import smHouse from '@/assets/img/smHouse.png';
+import bg from '@root/assets/img/bg.jpg';
+import message from '@root/assets/img/message.png';
+import octopus from '@root/assets/img/octopus.png';
+import spaceship from '@root/assets/img/spaceship.png';
+import circle from '@root/assets/img/circle.png';
+import shadow from '@root/assets/img/shadow.png';
+import house from '@root/assets/img/house.png';
+import smHouse from '@root/assets/img/smHouse.png';
 
 const Error = () => (
   <div className="error__wrap">
