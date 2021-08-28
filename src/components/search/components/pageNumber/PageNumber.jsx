@@ -1,7 +1,7 @@
-import { get, set, setQueryUtils } from '@/utils';
+import { get, set, setQueryUtils } from '@root/utils';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { pageNumberAction } from '@/store/pageNumberReducer';
+import { pageNumberAction } from '@root/store/pageNumberReducer';
 
 export default function PageNumber() {
   const router = useHistory();
@@ -34,6 +34,7 @@ export default function PageNumber() {
       <label>
         <input
           className="pageNumber"
+          data-testid="pageNumber"
           name="pageNumber"
           type="number"
           value={pageNumber}
