@@ -1,7 +1,7 @@
-import { set, get, setQueryUtils } from '@/utils';
+import { set, get, setQueryUtils } from '@root/utils';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { pageSizeAction } from '@/store/pageSizeReducer';
+import { pageSizeAction } from '@root/store/pageSizeReducer';
 
 export default function PageSize() {
   const router = useHistory();
@@ -14,6 +14,7 @@ export default function PageSize() {
     dispatch(pageSizeAction(sizeValue));
 
     const requestData = get('requestData');
+
     set('requestData', { ...requestData, pageSize: sizeValue });
     setQueryUtils({ search, router, param: 'pageSize', paramValue: sizeValue });
   }
