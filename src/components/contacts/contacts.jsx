@@ -1,4 +1,4 @@
-import rss from '@/assets/img/rss.jpg';
+import rss from '@root/assets/img/rss.jpg';
 import './contacts.scss';
 
 const Contacts = () => (
