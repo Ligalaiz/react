@@ -55,7 +55,7 @@ module.exports = {
     extensions: ['.js', '.jsx'],
     alias: {
       '@components': path.resolve(__dirname, 'src/components'),
-      '@': path.resolve(__dirname, 'src'),
+      '@root': path.resolve(__dirname, 'src'),
     },
   },
 
@@ -69,7 +69,7 @@ module.exports = {
 
     new Dotenv({
       systemvars: true,
-  }),
+    }),
     new CleanWebpackPlugin({
       cleanStaleWebpackAssets: false,
     }),
