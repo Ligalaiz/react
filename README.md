@@ -1,25 +1,21 @@
-## React. Redux
+## React. Testing
 
-## Demo: **[react-redux](https://react-redux-by-ligalaiz.netlify.app/)**
-
-
-!! Задание выполняется в личном приватном репозитории. !!
+## Demo: **[react-testing](https://react-testing-by-ligalaiz.netlify.app/)**
 
 Что должно быть сделано:
 
-1) Создать отдельную ветку для этого задания из ветки с заданием `React. Router` (https://github.com/rolling-scopes-school/tasks/blob/master/tasks/react/react-routing.md)
-2) Установить redux и redux-dev-tools(redux-dev-tools должны быть только в dev сборке) https://react-redux.js.org/tutorials/quick-start
-3) Сконфигурировать store, и добавить Provider в index.(j|t)sx
-4) Переместить всю работу с api и данными в redux. Т.е. данные больше не запрашиваются напрямую в компоненте, запрашиваем данные через Actions, и храним в store. В компоненту данные так же попадают из store.
+1) Создать отдельную ветку для этого задания из ветки с заданием `React. Redux` (https://github.com/rolling-scopes-school/tasks/blob/master/tasks/react/react-redux.md)
+2) Добавить скрипты в package.json для запуска тестов и для запуска тестов с coverage (ex: `npm run test, npm run test:coverage`)
+3) Покрыть проект юнит тестами минимум на 60% (т.е. результат `npm run test:coverage`  показывает не менее 60% по всем показателям)
 
-**!! Перед выполнением задания ознакомьтесь с тем как устроен поток данных в redux, а так же что такое Store, reducer, Action and dispatch !!**
+Для тестирования используем связки `jest + enzyme` или `jest + react-testing-library`.
+Сообществом активно вытесняется enzyme в пользу react-testing-library, поэтому советовала бы использовать его.
 
 ### Оценка
 
 Задание будет оцениваться ментором в сентябре. Для удобства проверки создайте Pull Request(**МЕРЖИТЬ НЕ НАДО**).
 
 1) Webpack, eslint, prettier, scripts - **0.5 балла**
-2) 2 + 3 + 4 - **14.5 баллов**
-
+2) 2 + 3 - **14.5 баллов**
 
 Если хоть один из пунктов не выполнен, то задание оценивается в **0 баллов**.
