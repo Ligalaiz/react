@@ -1,10 +1,10 @@
-import defaultImg from '../../assets/img/js.gif';
+import defaultImg from '@root/assets/img/nophoto.jpg';
 
 export default function Articles(props) {
   const { author, description, publishedAt, title, urlToImage } = props.article;
   const date = new Date(publishedAt);
   const month = date.getMonth();
-  const day = date.getDay();
+  const day = date.getDate();
   const currentDate = `${date.getFullYear()}-${
     month < 10 ? `0${month}` : month
   }-${day < 10 ? `0${day}` : day}`;
@@ -22,9 +22,6 @@ export default function Articles(props) {
                   alt={title}
                   loading="eager"
                   decoding="async"
-                  onError={(e) => {
-                    e.target.onerror = null;
-                  }}
                 />
               </div>
             </figure>
