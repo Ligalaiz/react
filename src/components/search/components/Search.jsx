@@ -1,17 +1,17 @@
 import { useEffect } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
-import { set, get, getQueryUtils, hasQueryUtils } from '@/utils';
-import getLocalDataUtils from '@/utils/getLocalData.utils';
-import getSearchDataUtils from '@/utils/getSearchData.utils';
-import restoreQueryUtils from '@/utils/restoreQuery.utils';
+import { set, get, getQueryUtils, hasQueryUtils } from '@root/utils';
+import getLocalDataUtils from '@root/utils/getLocalData.utils';
+import getSearchDataUtils from '@root/utils/getSearchData.utils';
+import restoreQueryUtils from '@root/utils/restoreQuery.utils';
 
-import { searchRequestAction } from '@/store/searchRequestReducer';
-import { pageNumberAction } from '@/store/pageNumberReducer';
-import { sortTypeAction } from '@/store/sortTypeReducer';
-import { pageSizeAction } from '@/store/pageSizeReducer';
+import { searchRequestAction } from '@root/store/searchRequestReducer';
+import { pageNumberAction } from '@root/store/pageNumberReducer';
+import { sortTypeAction } from '@root/store/sortTypeReducer';
+import { pageSizeAction } from '@root/store/pageSizeReducer';
 import { useDispatch, useSelector } from 'react-redux';
-import { addErrorAction } from '@/store/errorReducer';
-import { itemsAction } from '@/store/itemsReducer';
+import { addErrorAction } from '@root/store/errorReducer';
+import { itemsAction } from '@root/store/itemsReducer';
 
 import SearchResult from './searchResult/SearchResult';
 import SearchBar from './searchBar/SearchBar';
@@ -30,7 +30,6 @@ const Search = () => {
   const searchRequest = useSelector(
     (state) => state.searchRequest.searchRequest,
   );
-
   const { search } = useLocation();
   const router = useHistory();
 
