@@ -1,10 +1,10 @@
 import { useParams, Link, useHistory, useLocation } from 'react-router-dom';
-import defaultImg from '@/assets/img/js.gif';
+import defaultImg from '@root/assets/img/nophoto.jpg';
 import { useDispatch, useSelector } from 'react-redux';
-import { addErrorAction } from '@/store/errorReducer';
-import getSearchDataUtils from '@/utils/getSearchData.utils';
+import { addErrorAction } from '@root/store/errorReducer';
+import getSearchDataUtils from '@root/utils/getSearchData.utils';
 import { useEffect } from 'react';
-import { get, getQueryUtils } from '@/utils';
+import { get, getQueryUtils } from '@root/utils';
 import './details.scss';
 
 const Details = () => {
@@ -31,7 +31,6 @@ const Details = () => {
 
   const localItems = get('items');
   if (!localItems || localItems.length === 0 || !items) return false;
-
   const index = localItems.findIndex((item) => item.id === id);
   if (index === -1) {
     router.push('/error');
