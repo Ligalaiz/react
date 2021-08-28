@@ -1,8 +1,8 @@
-import { set, get, setQueryUtils } from '@/utils';
-import getSearchDataUtils from '@/utils/getSearchData.utils';
+import { set, get, setQueryUtils } from '@root/utils';
+import getSearchDataUtils from '@root/utils/getSearchData.utils';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { searchRequestAction } from '@/store/searchRequestReducer';
+import { searchRequestAction } from '@root/store/searchRequestReducer';
 
 export default function SearchBar() {
   const dispatch = useDispatch();
@@ -19,7 +19,6 @@ export default function SearchBar() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('request');
     if (searchRequest.length > 2) {
       const requestData = get('requestData');
 
@@ -58,6 +57,7 @@ export default function SearchBar() {
                 onChange={handleSearchChange}
               />
               <button
+                data-testid="search__btn"
                 type="submit"
                 className="search__btn"
                 disabled={searchRequest < 3}
