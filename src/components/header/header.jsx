@@ -1,6 +1,6 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import logo from '@/assets/img/logo.svg';
-import logoFull from '@/assets/img/logo--full.svg';
+import logo from '@root/assets/img/logo.svg';
+import logoFull from '@root/assets/img/logo--full.svg';
 import './header.scss';
 
 const Header = () => {
