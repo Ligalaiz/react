@@ -1,6 +1,6 @@
-import { set, delayUtils } from '@/utils';
-import { addLoadingAction } from '@/store/loadingReducer';
-import { pageTotalAction } from '@/store/pageTotalReducer';
+import { set, delayUtils } from '@root/utils';
+import { addLoadingAction } from '@root/store/loadingReducer';
+import { pageTotalAction } from '@root/store/pageTotalReducer';
 import { itemsAction } from '../store/itemsReducer';
 
 export const fetchArticles = ({ url, pageSize }) => {
@@ -21,7 +21,7 @@ export const fetchArticles = ({ url, pageSize }) => {
       return item;
     });
 
-    set('items', resultWithID || []);
+    set('items', resultWithID);
 
     dispatch(pageTotalAction(Math.floor(result.totalResults / pageSize)));
     dispatch(itemsAction(resultWithID));
