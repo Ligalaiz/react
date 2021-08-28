@@ -1,7 +1,7 @@
-import { get, set, setQueryUtils } from '@/utils';
+import { get, set, setQueryUtils } from '@root/utils';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { sortTypeAction } from '@/store/sortTypeReducer';
+import { sortTypeAction } from '@root/store/sortTypeReducer';
 
 export default function SortBar() {
   const dispatch = useDispatch();
@@ -30,6 +30,7 @@ export default function SortBar() {
     <>
       <button
         className="sort__btn sort__btn--left"
+        data-testid="relevancy"
         name="relevancy"
         style={sortType === 'relevancy' ? style : {}}
         type="button"
@@ -39,6 +40,7 @@ export default function SortBar() {
       </button>
       <button
         className="sort__btn sort__btn--cener"
+        data-testid="popularity"
         name="popularity"
         style={sortType === 'popularity' ? style : {}}
         type="button"
@@ -48,6 +50,7 @@ export default function SortBar() {
       </button>
       <button
         className="sort__btn sort__btn--right"
+        data-testid="publishedAt"
         name="publishedAt"
         style={sortType === 'publishedAt' ? style : {}}
         type="button"
