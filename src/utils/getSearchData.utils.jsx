@@ -1,8 +1,8 @@
-import { getUrlUtils } from '@/utils';
-import { addErrorAction } from '@/store/errorReducer';
-import { pageNumberAction } from '@/store/pageNumberReducer';
-import { addLoadingAction } from '@/store/loadingReducer';
-import { fetchArticles } from '@/asyncActions/articles';
+import { getUrlUtils } from '@root/utils';
+import { addErrorAction } from '@root/store/errorReducer';
+import { pageNumberAction } from '@root/store/pageNumberReducer';
+import { addLoadingAction } from '@root/store/loadingReducer';
+import { fetchArticles } from '@root/asyncActions/articles';
 
 export default async function getSearchDataUtils(
   { searchRequest, pageNumber, sortType, pageSize },

@@ -1,5 +1,5 @@
-export default function hasQueryUtils(querys, param) {
-  const temp = querys
+export default function hasQueryUtils(queries, param) {
+  const temp = queries
     .slice(1)
     .split('&')
     .map((query) => query.split('='))

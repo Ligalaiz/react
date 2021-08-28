@@ -1,5 +1,5 @@
-export default function getDateUtils() {
-  const date = new Date();
+export default function getDateUtils(testDate) {
+  const date = testDate || new Date();
   const month = date.getMonth();
   const day = date.getDate();
   const currentDate = `${date.getFullYear()}-${

@@ -1,9 +1,8 @@
 export default function restoreQueryUtils({ router, search, requestData }) {
   let currentQuery;
-
   if (search) {
     currentQuery = search;
-  } else if (requestData) {
+  } else {
     const requestArr = Object.keys(requestData);
 
     currentQuery = `?${requestArr
