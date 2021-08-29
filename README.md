@@ -11,3 +11,5 @@
 ### 5. **[Redux](https://github.com/Ligalaiz/react/tree/react-redux-task)**
 
 ### 6. **[Testing](https://github.com/Ligalaiz/react/tree/react-testing)**
+
+### 7. **[SSR](https://github.com/Ligalaiz/react/tree/react-ssr)**
