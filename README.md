@@ -1,6 +1,6 @@
 ## React. SSR
 
-## Demo: **[react-ssr(https://react-ssr-by-ligalaiz.netlify.app/)**
+## Demo: **[react-ssr](https://react-ssr-by-ligalaiz.netlify.app/)**
 
 В данном задании нужно из обычного React App, которое вы сделали в одном из предыдущих заданий, сделать Isomorphic React App.
 
