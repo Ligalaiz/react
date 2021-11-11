@@ -1,0 +1,1 @@
+export { APARTMENTS } from './imageData';
