@@ -18,3 +18,10 @@ node_modules
 
 # Build results
 dist
+
+.env
+
+coverage
+.husky
+.history
+storybook-static

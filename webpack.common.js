@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -7,7 +8,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
   target: 'web',
 
-  entry: ['@babel/polyfill', path.resolve(__dirname, './src/index.jsx')],
+  entry: ['@babel/polyfill', path.resolve(__dirname, './src/index.tsx')],
 
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -51,21 +52,27 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: {
+      '@src': path.resolve(__dirname, 'src'),
       '@components': path.resolve(__dirname, 'src/components'),
-      '@': path.resolve(__dirname, 'src'),
+      '@shared': path.resolve(__dirname, 'src/components/shared'),
+      '@utils': path.resolve(__dirname, 'src/utils'),
+      '@assets': path.resolve(__dirname, 'src/assets'),
     },
   },
 
   plugins: [
     new webpack.ProgressPlugin(),
-
     new HtmlWebpackPlugin({
       template: path.join('./src', 'index.html'),
       filename: './index.html',
+      inject: true,
     }),
 
+    new Dotenv({
+      systemvars: true,
+    }),
     new CleanWebpackPlugin({
       cleanStaleWebpackAssets: false,
     }),
