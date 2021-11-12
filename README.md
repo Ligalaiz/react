@@ -1,6 +1,8 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ba8259c7-247b-4d69-8668-a5623091a798/deploy-status)](https://app.netlify.com/sites/ligalaiz-react-components-ts/deploys)
 ## React. Components
 
-## Demo: **[react-components](https://react-components-task-by-ligalaiz.netlify.app/)**
+## Demo: **[react-components-ts](https://ligalaiz-react-components-ts.netlify.app/)**
+## UI Design: **[stories](https://ligalaiz-react-components-ts-stories.netlify.app/)**
 
 Что должно быть сделано:
 
