@@ -1,8 +1,7 @@
 /** @jsxImportSource @emotion/react */
+import { ISearchBtn } from '@src/interfaces';
 import React, { FC } from 'react';
 import { SearchBtnStyled } from './ButtonStyles';
-import { ISearchBtn } from '@src/interfaces';
-
 
 export const SearchBtn: FC<ISearchBtn> = (props) => {
   return (

@@ -1,6 +1,6 @@
+import { ISearchCheckbox } from '@src/interfaces';
 import React, { FC } from 'react';
 import { SearchCheckboxStyled, searchLabel } from './SearchCheckboxStyles';
-import { ISearchCheckbox } from '@src/interfaces';
 
 export const SearchCheckbox: FC<ISearchCheckbox> = ({
   petsAllowed,

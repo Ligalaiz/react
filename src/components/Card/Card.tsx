@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import React, { FC } from 'react';
-import * as cl from './CardStyles';
 import { Optional } from '@components/Optional';
 import { ICard } from '@src/interfaces';
+import React, { FC } from 'react';
+import * as cl from './CardStyles';
 
 export const Card: FC<ICard> = ({ apartment }) => {
   return (

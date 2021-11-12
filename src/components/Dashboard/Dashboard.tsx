@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import { SearchBar } from '@components/SearchBar';
-import React, { FC, useState } from 'react';
 import { ApartmentTable } from '@components/ApartmentTable';
+import { SearchBar } from '@components/SearchBar';
 import { IApartment } from '@src/interfaces';
+import React, { FC, useState } from 'react';
 
 export const Dashboard: FC<{ apartments: IApartment[] }> = ({ apartments }) => {
   const [filterText, setFilterText] = useState<string>('');

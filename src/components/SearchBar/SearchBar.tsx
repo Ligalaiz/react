@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { SearchBtn } from '@components/SearchBtn';
+import { SearchCheckbox } from '@components/SearchCheckbox';
+import { SearchField } from '@components/SearchField';
+import { ISearchBar } from '@src/interfaces';
 import React, { FC } from 'react';
 import * as cl from './SearchBarStyles';
-import { SearchField } from '@components/SearchField';
-import { SearchCheckbox } from '@components/SearchCheckbox';
-import { ISearchBar } from '@src/interfaces';
 
 export const SearchBar: FC<ISearchBar> = ({
   petsAllowed,

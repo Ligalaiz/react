@@ -1,5 +1,5 @@
-import React, { FC, ReactElement } from 'react';
 import { IApartment, ICard } from '@src/interfaces';
+import React, { FC, ReactElement } from 'react';
 
 export const Optional: FC<ICard> = ({ apartment }) => {
   const result: ReactElement[] = [];

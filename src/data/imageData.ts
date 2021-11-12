@@ -15,7 +15,7 @@ interface IApartment {
   price: string;
   rating: number | null;
   reviews: number | null;
-  [key: string]: number | string | boolean | null ;
+  [key: string]: number | string | boolean | null;
 }
 
 const APARTMENTS: IApartment[] = [

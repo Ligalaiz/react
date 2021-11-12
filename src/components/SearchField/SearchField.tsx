@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
+import { ISearchField } from '@src/interfaces';
 import React, { FC } from 'react';
 import { SearchFieldStyled } from './SearchFieldStyles';
-import { ISearchField } from '@src/interfaces';
 
 export const SearchField: FC<ISearchField> = ({
   filterText,

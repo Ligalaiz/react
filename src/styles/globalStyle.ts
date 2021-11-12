@@ -124,7 +124,7 @@ export const globalStyle = css`
     width: 100vw;
     z-index: 100;
   }
-  
+
   .wrap {
     display: grid;
     grid-template-columns: repeat(4, 1fr);

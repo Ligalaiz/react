@@ -5,5 +5,5 @@ export {
   ISearchBar,
   ISearchBtn,
   ISearchCheckbox,
-  ISearchField
+  ISearchField,
 } from './interfaces';

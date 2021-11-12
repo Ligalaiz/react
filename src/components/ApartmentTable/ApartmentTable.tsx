@@ -1,7 +1,7 @@
+import { Card } from '@components/Card';
+import { IApartment, IApartmentTable } from '@src/interfaces';
 import React, { FC, ReactElement } from 'react';
 import * as cl from './ApartmentTableStyles';
-import { Card } from '@components/Card';
-import { IApartmentTable, IApartment } from '@src/interfaces';
 
 export const ApartmentTable: FC<IApartmentTable> = ({
   apartments,
@@ -11,19 +11,17 @@ export const ApartmentTable: FC<IApartmentTable> = ({
   const filterTextLOwer = filterText.toLowerCase();
   const result: ReactElement[] = [];
 
-  apartments.forEach(
-    (apartment: IApartment, _index: number, _array: object[]): void => {
-      const apartmentName = apartment.name.toLowerCase();
-      if (petsAllowed && !apartment.pets) {
-        return;
-      }
+  apartments.forEach((apartment: IApartment): void => {
+    const apartmentName = apartment.name.toLowerCase();
+    if (petsAllowed && !apartment.pets) {
+      return;
+    }
 
-      if (apartmentName.indexOf(filterTextLOwer) === -1) {
-        return;
-      }
-      result.push(<Card apartment={apartment} key={apartment.name} />);
-    },
-  );
+    if (apartmentName.indexOf(filterTextLOwer) === -1) {
+      return;
+    }
+    result.push(<Card apartment={apartment} key={apartment.name} />);
+  });
 
   return (
     <div className="apartment__wrap" css={cl.apartmentWrap}>
