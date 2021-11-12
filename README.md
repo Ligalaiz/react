@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/67b84707-c4b5-4376-9eb8-6727f0f7a3f3/deploy-status)](https://app.netlify.com/sites/react-components-task-by-ligalaiz/deploys)
+
 ## React. Components
 
 ## Demo: **[react-components](https://react-components-task-by-ligalaiz.netlify.app/)**
