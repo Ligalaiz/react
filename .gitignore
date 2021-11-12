@@ -22,3 +22,6 @@ dist
 .env
 
 coverage
+storybook-static
+.husky
+.loki
