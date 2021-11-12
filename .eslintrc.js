@@ -55,6 +55,22 @@ module.exports = {
         allow: ['warn', 'error'],
       },
     ],
+    'jsx-a11y/label-has-associated-control': [
+      'error',
+      {
+        required: {
+          some: ['nesting', 'id'],
+        },
+      },
+    ],
+    'jsx-a11y/label-has-for': [
+      'error',
+      {
+        required: {
+          some: ['nesting', 'id'],
+        },
+      },
+    ],
     'import/prefer-default-export': 'off',
     'no-duplicate-imports': ['error', { includeExports: true }],
     'no-use-before-define': 'off',
