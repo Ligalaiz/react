@@ -3,7 +3,7 @@
 ## React. Forms
 
 ## Demo: **[react-forms-ts](https://ligalaiz-react-forms-ts.netlify.app/)**
-## UI Design: **[stories](https://ligalaiz-react-forms-ts-stories.netlify.ap
+## UI Design: **[stories](https://ligalaiz-react-forms-ts-stories.netlify.app/)**
 
 Что должно быть сделано:
 
