@@ -5,7 +5,7 @@ import {
   agreementLink,
   agreementCheckbox,
   agreementLabel,
-  agreementWrap
+  agreementWrap,
 } from './AgreementFieldStyle';
 
 export const AgreementField: FC<IAgreementField> = ({
@@ -18,12 +18,16 @@ export const AgreementField: FC<IAgreementField> = ({
         name="agreement"
         type="checkbox"
         css={agreementCheckbox}
-        id='agreement'
+        id="agreement"
         defaultChecked={agreement}
         onClick={handleClick}
         data-testid="agreementField"
       />
-      <label htmlFor="agreement" className="agreement__checkbox" css={agreementLabel}>
+      <label
+        htmlFor="agreement"
+        className="agreement__checkbox"
+        css={agreementLabel}
+      >
         I accept the{' '}
       </label>
       <a
