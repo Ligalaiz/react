@@ -1,6 +1,8 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f647edab-0c12-44e5-a614-b004a9eb41e1/deploy-status)](https://app.netlify.com/sites/ligalaiz-react-forms-ts/deploys)
+
 ## React. Forms
 
-## Demo: **[react-forms](https://react-forms-by-ligalaiz.netlify.app/)**
+## Demo: **[react-forms-ts](https://ligalaiz-react-forms-ts.netlify.app/)**
 
 Что должно быть сделано:
 
