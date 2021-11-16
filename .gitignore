@@ -18,3 +18,8 @@ node_modules
 
 # Build results
 dist
+
+.loki
+coverage
+storybook-static
+.husky

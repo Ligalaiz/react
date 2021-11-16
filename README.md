@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e1f234f8-2e7f-4ffe-9454-8ac681be4390/deploy-status)](https://app.netlify.com/sites/react-forms-by-ligalaiz/deploys)
+
 ## React. Forms
 
 ## Demo: **[react-forms](https://react-forms-by-ligalaiz.netlify.app/)**
