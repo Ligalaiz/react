@@ -12,19 +12,12 @@ export default function SearchBar(props) {
     setLoading,
   } = props;
 
-  const date = new Date();
-  const month = date.getMonth();
-  const day = date.getDate();
-  const currentDate = `${date.getFullYear()}-${
-    month < 10 ? `0${month}` : month
-  }-${day < 10 ? `0${day}` : day}`;
-
-  const link = `https://cors.bridged.cc/${process.env.BASE_PATH}${process.env.SEARCH_PATH}?${process.env.SEARCH_PARAM}${searchRequest}&${process.env.SEARCH_FROM}${currentDate}&${process.env.SEARCH_PAGE_SIZE}${pageSize}&${process.env.SEARCH_SORT}${sortType}&${process.env.SEARCH_PAGE_NUMBER}${pageNumber}&${process.env.SEARCH_API_KEY}${process.env.API_KEY3}`;
+  const link = `${process.env.BASE_PATH}${process.env.SEARCH_PATH}?${process.env.SEARCH_PARAM}${searchRequest}&${process.env.SEARCH_PAGE_SIZE}${pageSize}&${process.env.SEARCH_SORT}${sortType}&${process.env.SEARCH_PAGE_NUMBER}${pageNumber}`;
 
   const data = {
     method: 'GET',
     headers: {
-      'X-Requested-With': 'XMLHttpRequest',
+      'x-api-key': `${process.env.API_KEY}`,
     },
   };
 
@@ -50,7 +43,8 @@ export default function SearchBar(props) {
         throw Error(result.message);
       }
 
-      const pages = Math.floor(result.totalResults / pageSize);
+      const pages = result['total_pages'];
+
       setPageTotal(pages);
       setLoading(false);
       setItems(result.articles || []);
