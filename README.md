@@ -1,3 +1,4 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e90c65af-e42d-4136-b9a2-b7bee332bba5/deploy-status)](https://app.netlify.com/sites/react-api-by-ligalaiz/deploys)
 ## React. API
 
 ## Demo: **[react-api](https://react-api-by-ligalaiz.netlify.app/)**
