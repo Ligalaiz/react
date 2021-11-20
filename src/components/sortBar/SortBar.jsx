@@ -22,22 +22,22 @@ export default function SortBar(props) {
         relevancy
       </button>
       <button
-        className="sort__btn sort__btn--cener"
-        name="popularity"
-        style={sortType === 'popularity' ? style : {}}
+        className="sort__btn sort__btn--center"
+        name="date"
+        style={sortType === 'date' ? style : {}}
         type="button"
         onClick={handleClick}
       >
-        popularity
+        date
       </button>
       <button
         className="sort__btn sort__btn--right"
-        name="publishedAt"
-        style={sortType === 'publishedAt' ? style : {}}
+        name="rank"
+        style={sortType === 'rank' ? style : {}}
         type="button"
         onClick={handleClick}
       >
-        published at
+        rank
       </button>
     </>
   );
