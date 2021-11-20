@@ -1,8 +1,14 @@
 import defaultImg from '../../assets/img/js.gif';
 
 export default function Articles(props) {
-  const { title, author = '', link, published_date, excerpt, content,media } =
-    props.article;
+  const {
+    title,
+    author = '',
+    link,
+    published_date: publishedDate,
+    excerpt,
+    media,
+  } = props.article;
 
   return (
     <div className="reset-list article__wrap">
@@ -20,7 +26,7 @@ export default function Articles(props) {
         <div className="article__description">
           <p>title: {title}</p>
           <p>description: {excerpt}</p>
-          <p>publishedAt: {published_date}</p>
+          <p>publishedAt: {publishedDate}</p>
           <p>author: {author}</p>
           <p>url: {link}</p>
         </div>

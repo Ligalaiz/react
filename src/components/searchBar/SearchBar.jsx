@@ -43,7 +43,7 @@ export default function SearchBar(props) {
         throw Error(result.message);
       }
 
-      const pages = result['total_pages'];
+      const pages = result.total_pages;
 
       setPageTotal(pages);
       setLoading(false);
