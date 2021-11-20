@@ -1,7 +1,7 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/e90c65af-e42d-4136-b9a2-b7bee332bba5/deploy-status)](https://app.netlify.com/sites/react-api-by-ligalaiz/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/9c5ab60e-f5fd-4d99-84de-d58c9ef89e03/deploy-status)](https://app.netlify.com/sites/react-api-js/deploys)
 ## React. API
 
-## Demo: **[react-api](https://react-api-by-ligalaiz.netlify.app/)**
+## Demo: **[react-api](https://react-api-js.netlify.app/)**
 
 Можно выполнять задание на базе предыдущего
 

@@ -24,3 +24,6 @@ storybook-static
 coverage
 .loki
 .husky
+
+# Local Netlify folder
+.netlify
