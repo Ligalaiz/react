@@ -1,7 +1,7 @@
 import defaultImg from '../../assets/img/js.gif';
 
 export default function Articles(props) {
-  const { author, content, description, publishedAt, title, url, urlToImage } =
+  const { title, author = '', link, published_date, excerpt, content,media } =
     props.article;
 
   return (
@@ -10,7 +10,7 @@ export default function Articles(props) {
         <div className="article__image imgage__wrap">
           <img
             width="300"
-            src={urlToImage || defaultImg}
+            src={media || defaultImg}
             alt={title}
             onError={(e) => {
               e.target.onerror = null;
@@ -19,11 +19,10 @@ export default function Articles(props) {
         </div>
         <div className="article__description">
           <p>title: {title}</p>
-          <p>content: {content}</p>
-          <p>description: {description}</p>
-          <p>publishedAt: {publishedAt}</p>
+          <p>description: {excerpt}</p>
+          <p>publishedAt: {published_date}</p>
           <p>author: {author}</p>
-          <p>url: {url}</p>
+          <p>url: {link}</p>
         </div>
       </div>
     </div>
