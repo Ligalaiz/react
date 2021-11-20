@@ -20,3 +20,7 @@ node_modules
 dist
 
 .env
+storybook-static
+coverage
+.loki
+.husky
