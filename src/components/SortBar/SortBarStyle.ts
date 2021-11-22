@@ -1,7 +1,7 @@
-import { css } from '@emotion/react';
-import { color } from '@src/styles';
-import { IButton } from '@src/interfaces';
+import { css, SerializedStyles } from '@emotion/react';
 import styled from '@emotion/styled';
+import { IButton } from '@src/interfaces';
+import { color } from '@src/styles';
 
 export const cardList = css`
   display: flex;
@@ -56,15 +56,18 @@ export const SortBtn = styled.button<IButton>`
     if (sortType) {
       return activeBtn;
     }
+    return '';
   }}
 
   ${({ direction }) => {
+    let result: SerializedStyles | string = '';
     if (direction === 'left') {
-      return directionLeft;
+      result = directionLeft;
     } else if (direction === 'center') {
-      return directionCenter;
+      result = directionCenter;
     } else if (direction === 'right') {
-      return directionRight;
+      result = directionRight;
     }
+    return result;
   }}
 `;

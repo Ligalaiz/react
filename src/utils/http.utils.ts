@@ -1,4 +1,4 @@
-import { IResponse, IData } from '@src/interfaces';
+import { IData, IResponse } from '@src/interfaces';
 
 export async function http(request: string, data: IData): Promise<IResponse> {
   async function delay<T>(response: T): Promise<T> {

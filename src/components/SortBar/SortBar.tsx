@@ -4,12 +4,12 @@ import React, { FC } from 'react';
 import { SortBtn } from './SortBarStyle';
 
 export const SortBar: FC<ISortBar> = ({ sortType, setSortType }) => {
-  function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const target = e.target as typeof e.target & {
       name: 'relevancy' | 'date' | 'rank';
     };
     setSortType(target.name);
-  }
+  };
 
   return (
     <>

@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import { ISearchBar, ISearchForm } from '@src/interfaces';
-import React, { FC } from 'react';
-import { http } from '@utils/http.utils';
 import { SearchForm } from '@components/SearchForm';
+import { ISearchBar } from '@src/interfaces';
+import { http } from '@utils/http.utils';
+import React, { FC } from 'react';
 import { searchWrap } from './SearchBarStyle';
 
 export const SearchBar: FC<ISearchBar> = ({
@@ -34,7 +34,7 @@ export const SearchBar: FC<ISearchBar> = ({
       const response = await http(url, data);
       const pages = response.total_pages;
 
-      setPageTotal(parseInt(pages));
+      setPageTotal(parseInt(pages, 10));
       setLoading(false);
       setItems(response.articles || []);
     } catch (err: any) {

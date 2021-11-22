@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React, { FC } from 'react';
-import { loader } from './LoaderStyles'
+import { loader } from './LoaderStyles';
 
 export const Loader: FC = () => {
   return (
@@ -16,4 +16,4 @@ export const Loader: FC = () => {
       <div />
     </div>
   );
-}
+};

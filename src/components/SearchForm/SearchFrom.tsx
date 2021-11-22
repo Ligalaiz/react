@@ -1,11 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import React, { FC } from 'react';
-import {
-  searchBtn,
-  searchField,
-  searchContainer,
-} from './SearchFormStyle';
 import { ISearchForm } from '@src/interfaces';
+import React, { FC } from 'react';
+import { searchBtn, searchContainer, searchField } from './SearchFormStyle';
 
 export const SearchForm: FC<ISearchForm> = ({
   handleSubmit,
@@ -32,7 +28,7 @@ export const SearchForm: FC<ISearchForm> = ({
           data-testid="searchBtn"
           className="search__btn"
           css={searchBtn}
-          disabled={parseInt(searchRequest) < 3}
+          disabled={parseInt(searchRequest, 10) < 3}
         />
       </div>
     </form>

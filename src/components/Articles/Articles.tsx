@@ -1,12 +1,12 @@
+import defaultImg from '@assets/img/js.gif';
 import { IArticlesWraped } from '@src/interfaces';
 import React, { FC } from 'react';
 import {
-  articleStyle,
-  articleImage,
   articleDescription,
+  articleImage,
   articleImageWrap,
+  articleStyle,
 } from './ArticlesStyles';
-import defaultImg from '@assets/img/js.gif';
 
 export const Articles: FC<IArticlesWraped> = ({ article }) => {
   const {

@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
-import React, { FC, useState } from 'react';
-import { SearchBar } from '@components/SearchBar';
+import { Loader } from '@components/Loader';
 import { SortBar } from '@components/SortBar';
 import { PageBar } from '@components/PageBar';
-import { sortWrap, outputWrap } from './AppStyle';
+import { SearchBar } from '@components/SearchBar';
 import { SearchResult } from '@components/SearchResult';
 import { IArticles } from '@src/interfaces';
-import { Loader } from '@components/Loader';
+import React, { FC, useState } from 'react';
+import { outputWrap, sortWrap } from './AppStyle';
 
 export const App: FC = () => {
   const [searchRequest, setSearchRequest] = useState<string>('');
