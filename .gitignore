@@ -20,10 +20,8 @@ node_modules
 dist
 
 .env
-storybook-static
-coverage
-.loki
-.husky
 
-# Local Netlify folder
-.netlify
+coverage
+.husky
+.history
+storybook-static
