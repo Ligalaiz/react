@@ -1,6 +1,6 @@
-import { set, get, setQueryUtils } from '@/utils';
-import getSearchDataUtils from '@/utils/getSearchData.utils';
 import { useHistory, useLocation } from 'react-router-dom';
+import { get, set, setQueryUtils } from '@/utils';
+import getSearchDataUtils from '@/utils/getSearchData.utils';
 
 export default function SearchBar(props) {
   const { setSearchRequest, searchRequest } = props;

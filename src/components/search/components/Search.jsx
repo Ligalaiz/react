@@ -1,17 +1,19 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import { set, get, getQueryUtils, hasQueryUtils } from '@/utils';
+
 import getLocalDataUtils from '@/utils/getLocalData.utils';
 import getSearchDataUtils from '@/utils/getSearchData.utils';
 import restoreQueryUtils from '@/utils/restoreQuery.utils';
-import SearchResult from './searchResult/SearchResult';
+
 import SearchBar from './searchBar/SearchBar';
+import SearchResult from './searchResult/SearchResult';
 import SortBar from './sortBar/SortBar';
 import PageBar from './pageBar/PageBar';
 import Loader from './loader/Loader';
 import '../styles/index.scss';
 
-const Search = () => {
+const App = () => {
   const [searchRequest, setSearchRequest] = useState('');
   const [sortType, setSortTipe] = useState('relevancy');
   const [pageNumber, setPageNumber] = useState('1');
@@ -90,17 +92,17 @@ const Search = () => {
       <div className="control">
         <div className="form__wrap">
           <SearchBar
-            setSearchRequest={setSearchRequest}
-            searchRequest={searchRequest}
-            setPageNumber={setPageNumber}
-            pageNumber={pageNumber}
-            setSortTipe={setSortTipe}
-            sortType={sortType}
-            setPageTotal={setPageTotal}
             setLoading={setLoading}
             setError={setError}
+            searchRequest={searchRequest}
+            setSearchRequest={setSearchRequest}
+            setPageTotal={setPageTotal}
+            pageNumber={pageNumber}
+            setPageNumber={setPageNumber}
             pageSize={pageSize}
+            setSortTipe={setSortTipe}
             setItems={setItems}
+            sortType={sortType}
           />
         </div>
         <div className="sort__wrap">
@@ -108,12 +110,12 @@ const Search = () => {
         </div>
         <div className="pageBar__wrap">
           <PageBar
-            setPageNumber={setPageNumber}
-            pageNumber={pageNumber}
-            setPageSize={setPageSize}
-            pageSize={pageSize}
-            pageTotal={pageTotal}
             items={items}
+            pageTotal={pageTotal}
+            pageSize={pageSize}
+            setPageSize={setPageSize}
+            pageNumber={pageNumber}
+            setPageNumber={setPageNumber}
           />
         </div>
       </div>
@@ -139,4 +141,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default App;

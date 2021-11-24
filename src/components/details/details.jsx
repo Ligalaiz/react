@@ -1,8 +1,8 @@
-import { useParams, Link, useHistory, useLocation } from 'react-router-dom';
-import getDetailsDataUtils from '@/utils/getDetailsData.utils';
-import defaultImg from '@/assets/img/js.gif';
 import { useEffect, useState } from 'react';
+import { Link, useHistory, useLocation, useParams } from 'react-router-dom';
+import defaultImg from '@/assets/img/js.gif';
 import { get } from '@/utils';
+import getDetailsDataUtils from '@/utils/getDetailsData.utils';
 import './details.scss';
 
 const Details = () => {

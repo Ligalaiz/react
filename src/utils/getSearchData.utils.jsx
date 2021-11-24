@@ -1,4 +1,4 @@
-import { set, delayUtils, getUrlUtils } from '@/utils';
+import { set, delayUtils, getUrlUtils, data } from '@/utils';
 import requestUtils from '@/utils/request.utils';
 
 export default async function getSearchDataUtils({
@@ -17,8 +17,8 @@ export default async function getSearchDataUtils({
   try {
     setLoading(true);
 
-    const result = await requestUtils({ setItems, delayUtils, url, set });
-    const pages = Math.floor(result.totalResults / pageSize);
+    const result = await requestUtils({ setItems, delayUtils, url, set }, data);
+    const pages = result.total_pages;
 
     setPageTotal(pages);
     setLoading(false);

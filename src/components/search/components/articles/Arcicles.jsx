@@ -1,16 +1,16 @@
 import defaultImg from '../../assets/img/js.gif';
 
 export default function Articles(props) {
-  const { author, description, publishedAt, title, urlToImage } = props.article;
-  const date = new Date(publishedAt);
-  const month = date.getMonth();
-  const day = date.getDay();
-  const currentDate = `${date.getFullYear()}-${
-    month < 10 ? `0${month}` : month
-  }-${day < 10 ? `0${day}` : day}`;
+  const {
+    title,
+    author = '',
+    published_date: publishedDate,
+    excerpt,
+    media,
+  } = props.article;
 
   return (
-    <div className="article__wrap">
+    <div className="reset-list article__wrap">
       <div className="article">
         <div className="article__image imgage__wrap">
           <div className="rounded-lg">
@@ -18,7 +18,7 @@ export default function Articles(props) {
               <div className="bio-image-wrapper">
                 <img
                   className="bio-image-image"
-                  src={urlToImage || defaultImg}
+                  src={media || defaultImg}
                   alt={title}
                   loading="eager"
                   decoding="async"
@@ -32,8 +32,8 @@ export default function Articles(props) {
         </div>
         <div className="article__description">
           <h2 className="article__title">{title}</h2>
-          <p className="short-description">{description}</p>
-          <p>Published at {currentDate}</p>
+          <p className="short-description">{excerpt}</p>
+          <p>Published at {publishedDate}</p>
           <p>Author: {author}</p>
         </div>
       </div>

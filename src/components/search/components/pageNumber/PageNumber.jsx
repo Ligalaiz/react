@@ -1,5 +1,5 @@
-import { get, set, setQueryUtils } from '@/utils';
 import { useHistory, useLocation } from 'react-router-dom';
+import { get, set, setQueryUtils } from '@/utils';
 
 export default function PageSize(props) {
   const { pageNumber, setPageNumber } = props;
