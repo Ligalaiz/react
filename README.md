@@ -1,6 +1,8 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1d66f7c8-a02b-4539-9c4e-e9ab5da2de19/deploy-status)](https://app.netlify.com/sites/react-router-js-netlify/deploys)
+
 ## React. Router
 
-## Demo: **[react-router](https://react-router-by-ligalaiz.netlify.app/)**
+## Demo: **[react-router](https://react-router-js-netlify.netlify.app/)**
 
 Что должно быть сделано:
 
