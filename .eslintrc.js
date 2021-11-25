@@ -16,6 +16,7 @@ module.exports = {
     'plugin:import/warnings',
     'airbnb',
     'plugin:prettier/recommended',
+    'plugin:react-hooks/recommended',
     'prettier',
   ],
   env: {

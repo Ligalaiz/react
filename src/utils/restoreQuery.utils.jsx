@@ -1,14 +1,19 @@
-export default function restoreQueryUtils({ router, search, requestData }) {
-  let currentQuery;
-
+export default function restoreQueryUtils({
+  searchParams,
+  search,
+  setSearchParams,
+  requestData,
+}) {
   if (search) {
-    currentQuery = search;
+    const latestPrams = Object.fromEntries(searchParams.entries());
+    setSearchParams({ ...latestPrams });
   } else if (requestData) {
+    const result = {};
     const requestArr = Object.keys(requestData);
 
-    currentQuery = `?${requestArr
-      .map((key) => `${key}=${requestData[key]}`)
-      .join('&')}`;
+    requestArr.forEach((key) => {
+      result[`${key}`] = `${requestData[key]}`;
+    });
+    setSearchParams({ ...result });
   }
-  router.push(`${currentQuery}`);
 }

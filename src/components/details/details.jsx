@@ -1,44 +1,46 @@
-import { useEffect, useState } from 'react';
-import { Link, useHistory, useLocation, useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate, useLocation, useParams, useSearchParams } from 'react-router-dom';
 import defaultImg from '@/assets/img/js.gif';
 import { get } from '@/utils';
 import getDetailsDataUtils from '@/utils/getDetailsData.utils';
 import './details.scss';
 
 const Details = () => {
-  const [items, setItems] = useState([]);
-  const [error, setError] = useState(null);
-  const router = useHistory();
+  const navigate = useNavigate();
   const { search } = useLocation();
   const { id } = useParams();
+  const [error, setError] = useState(null);
+  const [items, setItems] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     getDetailsDataUtils({
       setItems,
       search,
       setError,
+      searchParams
     });
   }, []);
 
   const localItems = get('items');
-  if (!localItems || localItems.length === 0 || !items) return false;
+  if (!localItems || localItems.length === 0 || !items) return null;
 
   const index = localItems.findIndex((item) => item.id === id);
   if (index === -1) {
-    router.push('/error');
+    navigate('/error');
     return null;
   }
 
   const article = localItems[index];
   const nextArticle = localItems[(index + 1) % localItems.length];
-  const { author, content, description, publishedAt, title, url, urlToImage } =
-    article;
-  const date = new Date(publishedAt);
-  const month = date.getMonth();
-  const day = date.getDay();
-  const currentDate = `${date.getFullYear()}-${
-    month < 10 ? `0${month}` : month
-  }-${day < 10 ? `0${day}` : day}`;
+  const {
+    title,
+    author = '',
+    published_date: publishedDate,
+    summary,
+    media,
+    link,
+  } = article;
 
   return (
     <>
@@ -47,22 +49,24 @@ const Details = () => {
           <div className="article__image imgage__wrap">
             <img
               width="300"
-              src={urlToImage || defaultImg}
+              src={media}
               alt={title}
               onError={(e) => {
                 e.target.onerror = null;
+                e.target.src = defaultImg;
               }}
             />
           </div>
           <div className="article__description">
             <h2 className="article__title">{title}</h2>
-            <p className="short-description">{description}</p>
-            <p className="article__content">{content}</p>
-            <p>Published at {currentDate}</p>
-            <p>Author: {author}</p>
-            <a className="article__content" href={url}>
-              More information here
-            </a>
+            <p className="article__content">{summary}</p>
+            <p>Published at {publishedDate}</p>
+            {author && <p>Author: {author}</p>}
+            {link && (
+              <a className="article__content" href={link}>
+                More information here
+              </a>
+            )}
           </div>
           <div>
             <Link
@@ -106,4 +110,7 @@ const Details = () => {
   );
 };
 
-export default Details;
+// export default Details;
+export default (props) => {
+  return <Details {...props} />;
+};

@@ -1,10 +1,9 @@
-import { useHistory, useLocation } from 'react-router-dom';
-import { get, set, setQueryUtils } from '@/utils';
+import { useSearchParams } from 'react-router-dom';
+import { get, set } from '@/utils';
 
 export default function SortBar(props) {
   const { sortType, setSortTipe } = props;
-  const router = useHistory();
-  const { search } = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const style = {
     backgroundColor: '#D43728',
@@ -20,7 +19,8 @@ export default function SortBar(props) {
     const requestData = get('requestData');
     set('requestData', { ...requestData, sortType: sortValue });
 
-    setQueryUtils({ search, router, param: 'sortType', paramValue: sortValue });
+    const latestPrams = Object.fromEntries(searchParams.entries());
+    setSearchParams({ ...latestPrams, sortType: sortValue });
   }
 
   return (

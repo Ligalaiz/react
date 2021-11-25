@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { set, get, getQueryUtils, hasQueryUtils } from '@/utils';
 
 import getLocalDataUtils from '@/utils/getLocalData.utils';
@@ -23,25 +23,33 @@ const App = () => {
   const [error, setError] = useState(null);
   const [items, setItems] = useState([]);
   const { search } = useLocation();
-  const router = useHistory();
+
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     const localItems = get('items');
-    const queryData = getQueryUtils(search, {
+    const queryData = getQueryUtils(
+      search,
+      {
+        searchRequest,
+        pageNumber,
+        pageSize,
+        sortType,
+      },
+      searchParams,
+    );
+    const LocalData = getLocalDataUtils({
       searchRequest,
       pageNumber,
       pageSize,
       sortType,
     });
 
-    if (search && hasQueryUtils(search, 'searchRequest')) {
+    if (search && searchParams.get('searchRequest')) {
       set('requestData', queryData);
 
       getSearchDataUtils({
-        searchRequest: queryData.searchRequest,
-        pageNumber: queryData.pageNumber,
-        pageSize: queryData.pageSize,
-        sortType: queryData.sortType,
+        requestData: queryData,
         setPageNumber,
         setPageTotal,
         setLoading,
@@ -55,17 +63,21 @@ const App = () => {
       setSortTipe(queryData.sortType);
     } else if (localItems) {
       setItems(localItems);
+      restoreQueryUtils({
+        searchParams,
+        setSearchParams,
+        search,
+        requestData: LocalData,
+      });
     } else {
-      const LocalData = getLocalDataUtils({
-        searchRequest,
-        pageNumber,
-        pageSize,
-        sortType,
+      restoreQueryUtils({
+        searchParams,
+        setSearchParams,
+        search,
+        requestData: LocalData,
       });
 
-      restoreQueryUtils({ router, search, requestData: LocalData });
       set('requestData', queryData);
-
       setSearchRequest(LocalData.searchRequest);
       setPageNumber(LocalData.pageNumber);
       setPageSize(LocalData.pageSize);
@@ -73,10 +85,7 @@ const App = () => {
 
       if (LocalData.searchRequest && localItems.length === 0) {
         getSearchDataUtils({
-          searchRequest: LocalData.searchRequest,
-          pageNumber: LocalData.pageNumber,
-          pageSize: LocalData.pageSize,
-          sortType: LocalData.sortType,
+          requestData: LocalData,
           setPageNumber,
           setPageTotal,
           setLoading,
@@ -92,17 +101,14 @@ const App = () => {
       <div className="control">
         <div className="form__wrap">
           <SearchBar
+            requestData={{ searchRequest, pageNumber, pageSize, sortType }}
             setLoading={setLoading}
             setError={setError}
-            searchRequest={searchRequest}
             setSearchRequest={setSearchRequest}
             setPageTotal={setPageTotal}
-            pageNumber={pageNumber}
             setPageNumber={setPageNumber}
-            pageSize={pageSize}
             setSortTipe={setSortTipe}
             setItems={setItems}
-            sortType={sortType}
           />
         </div>
         <div className="sort__wrap">

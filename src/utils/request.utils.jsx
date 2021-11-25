@@ -4,9 +4,7 @@ export default async function requestUtils(
 ) {
   setItems([]);
 
-  const response = await fetch(url, data).catch((e) =>
-    console.log('Error: ', e.message),
-  );
+  const response = await fetch(url, data)
   let result = await response.json();
   result = await delayUtils(result);
 

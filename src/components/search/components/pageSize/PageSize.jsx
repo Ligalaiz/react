@@ -1,10 +1,9 @@
-import { useHistory, useLocation } from 'react-router-dom';
-import { get, set, setQueryUtils } from '@/utils';
+import { useSearchParams } from 'react-router-dom';
+import { get, set } from '@/utils';
 
 export default function PageSize(props) {
   const { pageSize, setPageSize } = props;
-  const router = useHistory();
-  const { search } = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   function handlerChange(e) {
     const sizeValue = e.target.value;
@@ -12,7 +11,9 @@ export default function PageSize(props) {
 
     const requestData = get('requestData');
     set('requestData', { ...requestData, pageSize: sizeValue });
-    setQueryUtils({ search, router, param: 'pageSize', paramValue: sizeValue });
+
+    const latestPrams = Object.fromEntries(searchParams.entries());
+    setSearchParams({ ...latestPrams, pageSize: sizeValue });
   }
 
   return (

@@ -1,11 +1,11 @@
-import { useHistory, useLocation } from 'react-router-dom';
-import { get, set, setQueryUtils } from '@/utils';
+import { useSearchParams } from 'react-router-dom';
+import { get, set } from '@/utils';
 import getSearchDataUtils from '@/utils/getSearchData.utils';
 
 export default function SearchBar(props) {
-  const { setSearchRequest, searchRequest } = props;
-  const router = useHistory();
-  const { search } = useLocation();
+  const { setSearchRequest } = props;
+  const { searchRequest } = props.requestData;
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,13 +15,9 @@ export default function SearchBar(props) {
 
       set('requestData', { ...requestData, searchRequest });
       getSearchDataUtils(props);
-      setQueryUtils({
-        search,
-        router,
-        requestData,
-        param: 'searchRequest',
-        paramValue: searchRequest,
-      });
+
+      const latestPrams = Object.fromEntries(searchParams.entries());
+      setSearchParams({ ...latestPrams, searchRequest: searchRequest });
     }
   };
 

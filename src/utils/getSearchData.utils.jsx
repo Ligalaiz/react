@@ -2,16 +2,14 @@ import { set, delayUtils, getUrlUtils, data } from '@/utils';
 import requestUtils from '@/utils/request.utils';
 
 export default async function getSearchDataUtils({
+  requestData,
   setPageNumber,
-  searchRequest,
   setPageTotal,
   setLoading,
-  pageNumber,
   setItems,
-  sortType,
   setError,
-  pageSize,
 }) {
+  const { searchRequest, pageNumber, pageSize, sortType } = requestData;
   const url = getUrlUtils({ searchRequest, pageSize, sortType, pageNumber });
 
   try {

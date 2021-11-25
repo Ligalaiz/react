@@ -18,12 +18,13 @@ export default function Articles(props) {
               <div className="bio-image-wrapper">
                 <img
                   className="bio-image-image"
-                  src={media || defaultImg}
+                  src={media}
                   alt={title}
                   loading="eager"
                   decoding="async"
                   onError={(e) => {
                     e.target.onerror = null;
+                    e.target.src = defaultImg;
                   }}
                 />
               </div>
@@ -34,7 +35,7 @@ export default function Articles(props) {
           <h2 className="article__title">{title}</h2>
           <p className="short-description">{excerpt}</p>
           <p>Published at {publishedDate}</p>
-          <p>Author: {author}</p>
+          {author && <p>Author: {author}</p>}
         </div>
       </div>
     </div>
