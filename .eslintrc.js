@@ -28,6 +28,7 @@ module.exports = {
   rules: {
     'no-restricted-globals': 'off',
     'react/no-array-index-key': 0,
+    'react/jsx-props-no-spreading': 'off',
     'react/prop-types': 0,
     'react/destructuring-assignment': [0],
     'react-hooks/rules-of-hooks': 'error',

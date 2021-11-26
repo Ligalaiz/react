@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
-import { set, get, getQueryUtils, hasQueryUtils } from '@/utils';
+import { set, get, getQueryUtils } from '@/utils';
 
 import getLocalDataUtils from '@/utils/getLocalData.utils';
 import getSearchDataUtils from '@/utils/getSearchData.utils';

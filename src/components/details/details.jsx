@@ -1,5 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate, useLocation, useParams, useSearchParams } from 'react-router-dom';
+import {
+  Link,
+  useNavigate,
+  useLocation,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
 import defaultImg from '@/assets/img/js.gif';
 import { get } from '@/utils';
 import getDetailsDataUtils from '@/utils/getDetailsData.utils';
@@ -18,7 +24,7 @@ const Details = () => {
       setItems,
       search,
       setError,
-      searchParams
+      searchParams,
     });
   }, []);
 
@@ -110,7 +116,6 @@ const Details = () => {
   );
 };
 
-// export default Details;
 export default (props) => {
   return <Details {...props} />;
 };

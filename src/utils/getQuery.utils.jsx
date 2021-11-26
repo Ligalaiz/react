@@ -8,13 +8,11 @@ export default function getQueryUtils(
   },
   searchParams,
 ) {
-  let result = {};
+  const result = {};
   if (search) {
     Object.keys(defaultParam).forEach((param) => {
       result[param] = searchParams.get(param);
     });
   }
-  console.log(search);
-  console.log(searchParams);
   return { ...defaultParam, ...result };
 }
