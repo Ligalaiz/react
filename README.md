@@ -12,7 +12,9 @@
 - **[js](https://github.com/Ligalaiz/react/tree/react-api)** [![Netlify Status](https://api.netlify.com/api/v1/badges/9c5ab60e-f5fd-4d99-84de-d58c9ef89e03/deploy-status)](https://app.netlify.com/sites/react-api-js/deploys)
 - **[ts](https://github.com/Ligalaiz/react/tree/react-api-ts)** [![Netlify Status](https://api.netlify.com/api/v1/badges/1aa312c2-982e-4045-9e89-43e85342bf2a/deploy-status)](https://app.netlify.com/sites/react-api-ts-netlify/deploys)
 
-### 4. **[Router](https://github.com/Ligalaiz/react/tree/react-router)**
+### 4. **Router**
+- **[js](https://github.com/Ligalaiz/react/tree/react-router)** [![Netlify Status](https://api.netlify.com/api/v1/badges/1d66f7c8-a02b-4539-9c4e-e9ab5da2de19/deploy-status)](https://app.netlify.com/sites/react-router-js-netlify/deploys)
+- **[ts](https://github.com/Ligalaiz/react/tree/react-router-ts)** [![Netlify Status](https://api.netlify.com/api/v1/badges/07d5bddb-de81-4ead-8981-1b628296983c/deploy-status)](https://app.netlify.com/sites/react-router-ts-netlify/deploys)
 
 ### 5. **[Redux](https://github.com/Ligalaiz/react/tree/react-redux-task)**
 
