@@ -1,8 +1,9 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/1d66f7c8-a02b-4539-9c4e-e9ab5da2de19/deploy-status)](https://app.netlify.com/sites/react-router-js-netlify/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/07d5bddb-de81-4ead-8981-1b628296983c/deploy-status)](https://app.netlify.com/sites/react-router-ts-netlify/deploys)
 
 ## React. Router
 
-## Demo: **[react-router](https://react-router-js-netlify.netlify.app/)**
+## Demo: **[react-router-ts](https://react-router-ts-netlify.netlify.app/)**
+## UI Design: **[stories](https://react-router-ts-ui-netlify.netlify.app/)**
 
 Что должно быть сделано:
 
