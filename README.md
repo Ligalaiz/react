@@ -1,6 +1,7 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/cf5d063a-1463-4576-8f0e-6ac6d0a280e5/deploy-status)](https://app.netlify.com/sites/react-redux-js-netlify/deploys)
 ## React. Redux
 
-## Demo: **[react-redux](https://react-redux-by-ligalaiz.netlify.app/)**
+## Demo: **[react-redux](https://react-redux-js-netlify.netlify.app/)**
 
 
 !! Задание выполняется в личном приватном репозитории. !!
