@@ -67,9 +67,7 @@ module.exports = {
       inject: true,
     }),
 
-    new Dotenv({
-      systemvars: true,
-  }),
+    new Dotenv(),
     new CleanWebpackPlugin({
       cleanStaleWebpackAssets: false,
     }),

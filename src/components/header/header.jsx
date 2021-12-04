@@ -25,7 +25,6 @@ const Header = () => {
           <li>
             <NavLink
               className="nav__link"
-              exact
               to={{
                 pathname: '/',
                 search: `${search}`,
@@ -37,7 +36,6 @@ const Header = () => {
           <li>
             <NavLink
               className="nav__link nav__link--about"
-              exact
               to={{
                 pathname: '/about',
                 search: `${search}`,
@@ -49,7 +47,6 @@ const Header = () => {
           <li>
             <NavLink
               className="nav__link"
-              exact
               to={{
                 pathname: '/contacts',
                 search: `${search}`,

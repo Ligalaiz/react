@@ -1,21 +1,21 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import Articles from '../articles/Arcicles';
+import { useSelector } from 'react-redux';
 
 export default function SearchResult() {
-  const items = useSelector((state) => state.items.items);
+  const { news } = useSelector((state) => state.news);
   const { search } = useLocation();
 
-  if (!items) return false;
+  if (!news) return false;
 
   return (
     <>
-      {items.map((article, index) => (
+      {news.map((article, index) => (
         <Link
           to={{
             pathname: `/details/card/${article.id}`,
             search: `${search}`,
-            state: { article: article, id: article.id, items: items },
+            state: { article: article, id: article.id, items: news },
           }}
           key={index}
         >

@@ -1,48 +1,33 @@
-import { set, get, setQueryUtils } from '@/utils';
-import getSearchDataUtils from '@/utils/getSearchData.utils';
-import { useHistory, useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { searchRequestAction } from '@/store/searchRequestReducer';
+import { useSearchParams } from 'react-router-dom';
+import { get, set, getUrlUtils } from '@/utils';
+import { useSelector } from 'react-redux';
+import { useAction } from '@/hooks/useAction';
 
 export default function SearchBar() {
-  const dispatch = useDispatch();
-  const pageNumber = useSelector((state) => state.pageNumber.pageNumber);
-  const pageSize = useSelector((state) => state.pageSize.pageSize);
-  const sortType = useSelector((state) => state.sortType.sortType);
-  const pageTotal = useSelector((state) => state.pageTotal.pageTotal);
-  const searchRequest = useSelector(
-    (state) => state.searchRequest.searchRequest,
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { searchRequest, pageNumber, pageSize, sortType } = useSelector(
+    (state) => state.news,
   );
-
-  const router = useHistory();
-  const { search } = useLocation();
+  const { fetchNews, setSearchRequest } = useAction();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('request');
+
     if (searchRequest.length > 2) {
       const requestData = get('requestData');
 
       set('requestData', { ...requestData, searchRequest });
 
-      getSearchDataUtils(
-        { pageSize, pageNumber, sortType, pageTotal, searchRequest },
-        dispatch,
-      );
-
-      setQueryUtils({
-        search,
-        router,
-        requestData,
-        param: 'searchRequest',
-        paramValue: searchRequest,
-      });
+      fetchNews(getUrlUtils({ searchRequest, pageNumber, pageSize, sortType }));
+      const latestPrams = Object.fromEntries(searchParams.entries());
+      setSearchParams({ ...latestPrams, searchRequest: searchRequest });
     }
   };
 
   const handleSearchChange = (e) => {
     const requestValue = e.target.value;
-    dispatch(searchRequestAction(requestValue));
+
+    setSearchRequest(requestValue);
   };
 
   return (
