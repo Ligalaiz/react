@@ -1,6 +1,6 @@
-import { NEWS_TYPES } from '../reducer/reducer';
 import { set } from '@/utils';
 import { data } from '@/utils/getUrl.utils';
+import { NEWS_TYPES } from '../reducer/reducer';
 
 const fetchNews = (url) => {
   return async (dispatch) => {

@@ -1,16 +1,16 @@
-import { useEffect } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { set, get, getQueryUtils, getUrlUtils } from '@/utils';
+import { useAction } from '@/hooks/useAction';
+import { get, getQueryUtils, getUrlUtils, set } from '@/utils';
 import getLocalDataUtils from '@/utils/getLocalData.utils';
 import restoreQueryUtils from '@/utils/restoreQuery.utils';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useLocation, useSearchParams } from 'react-router-dom';
+import '../styles/index.scss';
+import Loader from './loader/Loader';
+import PageBar from './pageBar/PageBar';
 import SearchBar from './searchBar/SearchBar';
 import SearchResult from './searchResult/SearchResult';
 import SortBar from './sortBar/SortBar';
-import PageBar from './pageBar/PageBar';
-import Loader from './loader/Loader';
-import { useAction } from '@/hooks/useAction';
-import '../styles/index.scss';
 
 const App = () => {
   const { searchRequest, loading, error, pageNumber, sortType, pageSize } =

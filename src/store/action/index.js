@@ -1,5 +1,5 @@
-import * as NewsAction from './action'
+import * as NewsAction from './action';
 
 export default {
-  ...NewsAction
-}
+  ...NewsAction,
+};

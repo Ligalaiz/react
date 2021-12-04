@@ -8,7 +8,7 @@ export function getQueryUtils(
   },
   searchParams,
 ) {
-  let result = {};
+  const result = {};
   if (search) {
     Object.keys(defaultParam).forEach((param) => {
       result[param] = searchParams.get(param);

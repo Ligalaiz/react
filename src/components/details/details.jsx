@@ -1,15 +1,15 @@
+import defaultImg from '@/assets/img/js.gif';
+import { useAction } from '@/hooks/useAction';
+import { get, getQueryUtils, getUrlUtils } from '@/utils';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import {
   Link,
-  useNavigate,
   useLocation,
+  useNavigate,
   useParams,
   useSearchParams,
 } from 'react-router-dom';
-import defaultImg from '@/assets/img/js.gif';
-import { get, getUrlUtils, getQueryUtils } from '@/utils';
-import { useAction } from '@/hooks/useAction';
-import { useSelector } from 'react-redux';
 import './details.scss';
 
 const Details = () => {
@@ -115,5 +115,6 @@ const Details = () => {
 };
 
 export default (props) => {
+  // eslint-disable-next-line react/jsx-props-no-spreading
   return <Details {...props} />;
 };

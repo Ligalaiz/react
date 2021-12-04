@@ -1,11 +1,11 @@
-import { useSearchParams } from 'react-router-dom';
-import { get, set } from '@/utils';
 import { useAction } from '@/hooks/useAction';
+import { get, set } from '@/utils';
 import { useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 
 export default function PageSize() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { pageSize } = useSelector((state => state.news));
+  const { pageSize } = useSelector((state) => state.news);
   const { setPageSize } = useAction();
 
   function handlerChange(e) {

@@ -1,6 +1,6 @@
+import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import Articles from '../articles/Arcicles';
-import { useSelector } from 'react-redux';
 
 export default function SearchResult() {
   const { news } = useSelector((state) => state.news);
