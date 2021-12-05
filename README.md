@@ -1,8 +1,9 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/cf5d063a-1463-4576-8f0e-6ac6d0a280e5/deploy-status)](https://app.netlify.com/sites/react-redux-js-netlify/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e80fecef-45f6-40aa-bd2c-4144c50d2e6d/deploy-status)](https://app.netlify.com/sites/react-redux-ts-netlify/deploys)
 ## React. Redux
 
-## Demo: **[react-redux](https://react-redux-js-netlify.netlify.app/)**
 
+## Demo: **[react-redux-ts](https://react-redux-ts-netlify.netlify.app)**
+## UI Design: **[stories](https://react-redux-ts-ui-netlify.netlify.app)**
 
 !! Задание выполняется в личном приватном репозитории. !!
 
