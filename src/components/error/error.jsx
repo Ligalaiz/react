@@ -29,4 +29,4 @@ const Error = () => (
   </div>
 );
 
-export default Error;
+export { Error };

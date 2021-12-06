@@ -1,28 +1,41 @@
-import { Route, Switch, useLocation } from 'react-router-dom';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { Route, Routes, useLocation, useMatch } from 'react-router-dom';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { routes } from '../../router';
+import { Search } from '../search/components/Search';
+import { Layout } from '../Layout/Layout';
 
 const AppRouter = () => {
   const location = useLocation();
+  const match = useMatch(location.pathname);
+
   return (
     <TransitionGroup>
-      <Switch location={location}>
-        {routes.map(({ path, Component, exact }, idx) => (
-          <Route path={path} exact={exact} key={idx}>
-            {({ match }) => (
-              <CSSTransition
-                timeout={1000}
-                classNames="page"
-                in={match !== null}
-              >
-                <Component />
-              </CSSTransition>
-            )}
-          </Route>
-        ))}
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Search />} />
+
+          {routes.map((route) => {
+            return (
+              <Route
+                key={route.path}
+                path={route.path}
+                element={
+                  <CSSTransition
+                    in={match != null}
+                    timeout={1000}
+                    key={location.key}
+                    classNames="page"
+                  >
+                    {route.element}
+                  </CSSTransition>
+                }
+              />
+            );
+          })}
+        </Route>
+      </Routes>
     </TransitionGroup>
   );
 };
 
-export default AppRouter;
+export { AppRouter };

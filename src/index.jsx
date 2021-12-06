@@ -1,23 +1,18 @@
-import AppRouter from '@components/appRouter/appRouter';
-import { BrowserRouter as Router } from 'react-router-dom';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { store } from '@root/store';
-import App from './App';
-
-export const All = () => {
-  return (
-    <Router>
-      <Provider store={store}>
-        <App>
-          <AppRouter />
-        </App>
-      </Provider>
-    </Router>
-  );
-};
+import { BrowserRouter as Router } from 'react-router-dom';
+import { App } from './App';
+import { AppRouter } from './components/appRouter/appRouter';
+import { store } from './store';
 
 ReactDOM.render(
-  <All />,
-  document.getElementById('root') || document.createElement('div'),
+  <Router>
+    <Provider store={store}>
+      <App>
+        <AppRouter />
+      </App>
+    </Provider>
+  </Router>,
+  document.getElementById('root'),
 );

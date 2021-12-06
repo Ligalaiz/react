@@ -1,9 +1,11 @@
 import { get } from './storage.utils';
 
-export default function getLocalDataUtils(
-  { searchRequest, pageNumber, pageSize, sortType },
-  testLocalData,
-) {
+const getLocalDataUtils = ({
+  searchRequest,
+  pageNumber,
+  pageSize,
+  sortType,
+}) => {
   let requestData = {
     searchRequest,
     pageNumber,
@@ -11,10 +13,12 @@ export default function getLocalDataUtils(
     sortType,
   };
 
-  const localData = testLocalData || get('requestData');
+  const localData = get('requestData');
   if (localData) {
     requestData = { ...requestData, ...localData };
   }
 
   return requestData;
-}
+};
+
+export { getLocalDataUtils };

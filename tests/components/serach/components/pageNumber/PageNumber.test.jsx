@@ -1,10 +1,9 @@
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { render, fireEvent } from '@testing-library/react';
-import PageNumber from '../../../../../src/components/search/components/pageNumber/PageNumber';
+import { PageNumber } from '../../../../../src/components/search/components/pageNumber/PageNumber';
 import '@testing-library/jest-dom';
-import { pageNumberAction } from '../../../../../src/store/pageNumberReducer';
-import rootReducer from '../../../../../src/store/rootReducer';
+import { store } from '../../../../../src/store';
+import { NEWS_TYPES } from '../../../../../src/store/reducer/reducer';
 
 jest.mock('react-router-dom', () => ({
   useLocation: jest.fn().mockReturnValue({
@@ -14,20 +13,28 @@ jest.mock('react-router-dom', () => ({
     state: null,
     key: '5',
   }),
+  useSearchParams: () => [
+    {
+      entries: jest.fn().mockReturnValue([
+        ['searchRequest', 'test'],
+        ['pageNumber', '1'],
+        ['pageSize', '1'],
+        ['sortType', 'relevancy'],
+      ]),
+    },
+    () => jest.fn(),
+  ],
   useHistory: () => ({
     push: jest.fn(),
   }),
 }));
 
-let store;
-
-beforeEach(() => {
-  store = createStore(rootReducer);
-});
-
 describe('PageNumber', () => {
   it('Render PageNumber component', () => {
-    store.dispatch(pageNumberAction('1'));
+    store.dispatch({
+      type: NEWS_TYPES.SET_PAGE_NUMBER,
+      payload: '1',
+    });
     const { getByTestId } = render(
       <Provider store={store}>
         <PageNumber />

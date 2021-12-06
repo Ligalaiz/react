@@ -1,6 +1,7 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8fff7482-ff72-41ca-a278-e2ced22cce6c/deploy-status)](https://app.netlify.com/sites/react-test-js-netlify/deploys)
 ## React. Testing
 
-## Demo: **[react-testing](https://react-testing-by-ligalaiz.netlify.app/)**
+## Demo: **[react-testing](https://react-test-js-netlify.netlify.app/)**
 
 Что должно быть сделано:
 

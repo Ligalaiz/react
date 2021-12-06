@@ -1,4 +1,4 @@
-@import '../styles/variables.scss';
+@import '@root/styles/variables.scss';
 
 figure {
   display: block;
@@ -7,29 +7,33 @@ figure {
 
 figure {
   margin: 0;
-  padding: 0
+  padding: 0;
 }
 
-figure:after,figure:before {
+figure:after,
+figure:before {
   content: ' ';
   display: table;
-  clear: both
+  clear: both;
 }
 
-.bio-image,.bio-image *,.bio-image :after,.bio-image :before {
-  box-sizing: border-box
+.bio-image,
+.bio-image *,
+.bio-image :after,
+.bio-image :before {
+  box-sizing: border-box;
 }
 
 .rounded-lg {
-  border-radius: .694rem;
-  margin-bottom: .75rem;
+  border-radius: 0.694rem;
+  margin-bottom: 0.75rem;
   margin: 0 auto;
   width: 230px;
   height: 230px;
 }
 
 .bio-image {
-  --bio-image-border-width: 5px
+  --bio-image-border-width: 5px;
 }
 
 .bio-image {
@@ -39,7 +43,7 @@ figure:after,figure:before {
   width: auto;
   height: auto;
   border-radius: inherit;
-  position: relative
+  position: relative;
 }
 
 .bio-image::before {
@@ -57,27 +61,30 @@ figure:after,figure:before {
   transform-origin: 30% 50%;
   pointer-events: none;
   opacity: 1;
-  transition: opacity .3s ease-in-out
+  transition: opacity 0.3s ease-in-out;
 }
 
 .bio-image:hover::before {
-  opacity: 0
+  opacity: 0;
 }
 
 .bio-image--white {
-  --bio-image-border-color: #fff
+  --bio-image-border-color: #fff;
 }
 
 .bio-image-wrapper {
-  background: var(--bio-image-background-color,var(--bio-image-border-color,$pimary));
+  background: var(
+    --bio-image-background-color,
+    var(--bio-image-border-color, $pimary)
+  );
   border: 8px solid $pimary;
   border-radius: inherit;
-  transform: scale(.84) translateX(15%) rotateZ(calc(-1 * (11 * 1deg)));
+  transform: scale(0.84) translateX(15%) rotateZ(calc(-1 * (11 * 1deg)));
   transform-origin: 0 100%;
-  transition: transform .2s ease-out;
+  transition: transform 0.2s ease-out;
   overflow: hidden;
   width: auto;
-  height: auto
+  height: auto;
 }
 
 .bio-image-image {
@@ -85,16 +92,16 @@ figure:after,figure:before {
   object-fit: cover;
   display: block;
   transform: scale(1.2) rotateZ(calc(11 * 1deg));
-  transition: transform .2s ease-out;
+  transition: transform 0.2s ease-out;
   width: 230px;
   height: 230px;
   object-fit: fill;
 }
 
 .bio-image:hover .bio-image-wrapper {
-  transform: scale(.84) translateX(15%) rotateZ(0)
+  transform: scale(0.84) translateX(15%) rotateZ(0);
 }
 
 .bio-image:hover .bio-image-image {
-  transform: scale(1.2) rotateZ(0)
+  transform: scale(1.2) rotateZ(0);
 }

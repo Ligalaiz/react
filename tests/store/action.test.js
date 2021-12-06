@@ -1,8 +1,13 @@
-import { fetchArticles } from '../../src/asyncActions/articles';
+import { fetchNews } from '../../src/store/action/action';
 import { articles } from '../data';
 
 let url;
 let pageSize;
+let set;
+
+let dispatch;
+let requestFunc;
+const OLD_ENV = process.env;
 
 function setupFetchStub(fakeData) {
   return function fetchStub() {
@@ -23,8 +28,17 @@ function setupFetchStubError() {
 }
 
 beforeEach(() => {
+  jest.resetModules();
+  process.env = { ...OLD_ENV };
   url = 'https://teat.com';
   pageSize = 10;
+  set = jest.fn();
+  dispatch = jest.fn();
+  requestFunc = fetchNews({ url, pageSize });
+});
+
+afterAll(() => {
+  process.env = OLD_ENV;
 });
 
 describe('Fetch request', () => {
@@ -34,9 +48,9 @@ describe('Fetch request', () => {
       articles,
       json: async () => ({ success: true }),
     };
+    process.env.API_KEY = '123456789';
     global.fetch = jest.fn().mockImplementation(setupFetchStub(fakeData));
-    const dispatch = jest.fn();
-    const requestFunc = fetchArticles({ url, pageSize });
+
     await requestFunc(dispatch);
     expect(window.fetch).toHaveBeenCalledTimes(1);
 
@@ -51,9 +65,8 @@ describe('Fetch request', () => {
       message: 'error',
       json: async () => ({ success: true }),
     };
+
     global.fetch = jest.fn().mockImplementation(setupFetchStub(fakeData));
-    const dispatch = jest.fn();
-    const requestFunc = fetchArticles({ url, pageSize });
 
     try {
       await requestFunc(dispatch);
@@ -68,8 +81,6 @@ describe('Fetch request', () => {
 
   it('get error with wrong data', async () => {
     global.fetch = jest.fn().mockImplementation(setupFetchStubError());
-    const dispatch = jest.fn();
-    const requestFunc = fetchArticles({ url, pageSize });
 
     try {
       await requestFunc(dispatch);

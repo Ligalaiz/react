@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Error from '../../../src/components/error/error';
+import { Error } from '../../../src/components/error/error';
 
 describe('Error', () => {
   it('Render Error component', () => {

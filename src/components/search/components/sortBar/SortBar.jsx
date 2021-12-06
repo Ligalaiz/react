@@ -1,13 +1,12 @@
-import { get, set, setQueryUtils } from '@root/utils';
-import { useHistory, useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { sortTypeAction } from '@root/store/sortTypeReducer';
+import { useSearchParams } from 'react-router-dom';
+import { get, set } from '@root/utils';
+import { useAction } from '@root/hooks/useAction';
+import { useSelector } from 'react-redux';
 
-export default function SortBar() {
-  const dispatch = useDispatch();
-  const sortType = useSelector((state) => state.sortType.sortType);
-  const router = useHistory();
-  const { search } = useLocation();
+const SortBar = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { sortType } = useSelector((state) => state.news);
+  const { setSortType } = useAction();
 
   const style = {
     backgroundColor: '#D43728',
@@ -18,46 +17,50 @@ export default function SortBar() {
 
   function handleClick(e) {
     const sortValue = e.target.name;
-    dispatch(sortTypeAction(sortValue));
+
+    setSortType(sortValue);
 
     const requestData = get('requestData');
     set('requestData', { ...requestData, sortType: sortValue });
 
-    setQueryUtils({ search, router, param: 'sortType', paramValue: sortValue });
+    const latestPrams = Object.fromEntries(searchParams.entries());
+    setSearchParams({ ...latestPrams, sortType: sortValue });
   }
 
   return (
     <>
       <button
         className="sort__btn sort__btn--left"
-        data-testid="relevancy"
         name="relevancy"
         style={sortType === 'relevancy' ? style : {}}
+        data-testid="relevancy"
         type="button"
         onClick={handleClick}
       >
         relevancy
       </button>
       <button
-        className="sort__btn sort__btn--cener"
-        data-testid="popularity"
-        name="popularity"
-        style={sortType === 'popularity' ? style : {}}
+        className="sort__btn sort__btn--center"
+        name="date"
+        style={sortType === 'date' ? style : {}}
+        data-testid="date"
         type="button"
         onClick={handleClick}
       >
-        popularity
+        date
       </button>
       <button
         className="sort__btn sort__btn--right"
-        data-testid="publishedAt"
-        name="publishedAt"
-        style={sortType === 'publishedAt' ? style : {}}
+        name="rank"
+        style={sortType === 'rank' ? style : {}}
+        data-testid="rank"
         type="button"
         onClick={handleClick}
       >
-        published at
+        rank
       </button>
     </>
   );
-}
+};
+
+export { SortBar };

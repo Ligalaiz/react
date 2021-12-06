@@ -1,4 +1,4 @@
-export default function Loader() {
+const Loader = () => {
   return (
     <div className="loader" data-testid="loader">
       <div />
@@ -12,4 +12,6 @@ export default function Loader() {
       <div />
     </div>
   );
-}
+};
+
+export { Loader };

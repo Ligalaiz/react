@@ -1,4 +1,4 @@
-import getUrlUtils from '../../src/utils/getUrl.utils';
+import { getUrlUtils, data } from '../../src/utils/getUrl.utils';
 
 describe('getUrlUtils return url string', () => {
   const OLD_ENV = process.env;
@@ -13,15 +13,12 @@ describe('getUrlUtils return url string', () => {
   });
 
   it('get url', () => {
-    process.env.BASE_PATH = 'https://newsapi.org/v2';
-    process.env.SEARCH_PATH = '/everything';
+    process.env.BASE_PATH = 'https://api.newscatcherapi.com/v2';
+    process.env.SEARCH_PATH = '/search';
     process.env.SEARCH_PARAM = 'q=';
-    process.env.SEARCH_FROM = 'from=';
-    process.env.SEARCH_PAGE_SIZE = 'pageSize=';
-    process.env.SEARCH_SORT = 'sortBy=';
+    process.env.SEARCH_PAGE_SIZE = 'page_size=';
+    process.env.SEARCH_SORT = 'sort_by=';
     process.env.SEARCH_PAGE_NUMBER = 'page=';
-    process.env.SEARCH_API_KEY = 'apiKey=';
-    process.env.API_KEY = '123456789';
 
     const hits = {
       searchRequest: 'test',
@@ -29,11 +26,24 @@ describe('getUrlUtils return url string', () => {
       pageSize: 1,
       sortType: 'relevancy',
     };
-    const testDate = '2021-10-10';
-    const compareStr = `https://newsapi.org/v2/everything?q=test&from=${testDate}&pageSize=1&sortBy=relevancy&page=2&apiKey=123456789`;
-    const result = getUrlUtils(hits, testDate);
+
+    const compareStr = `https://api.newscatcherapi.com/v2/search?q=test&page_size=1&sort_by=relevancy&page=2`;
+    const result = getUrlUtils(hits);
 
     expect(result).toEqual(compareStr);
+    expect(result).not.toBeUndefined();
+  });
+
+  it('get header data', () => {
+    process.env.API_KEY = '123456789';
+    const result = data();
+
+    expect(result).toEqual({
+      method: 'GET',
+      headers: {
+        'x-api-key': '123456789',
+      },
+    });
     expect(result).not.toBeUndefined();
   });
 });

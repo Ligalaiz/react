@@ -1,12 +1,11 @@
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { render } from '@testing-library/react';
 import { LocalStorageMock } from '@react-mock/localstorage';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
-import rootReducer from '../../../../../src/store/rootReducer';
-import PageSize from '../../../../../src/components/search/components/pageSize/PageSize';
-import { pageSizeAction } from '../../../../../src/store/pageSizeReducer';
+import { store } from '../../../../../src/store';
+import { NEWS_TYPES } from '../../../../../src/store/reducer/reducer';
+import { PageSize } from '../../../../../src/components/search/components/pageSize/PageSize';
 
 jest.mock('react-router-dom', () => ({
   useLocation: jest.fn().mockReturnValue({
@@ -16,20 +15,28 @@ jest.mock('react-router-dom', () => ({
     state: null,
     key: '5',
   }),
+  useSearchParams: () => [
+    {
+      entries: jest.fn().mockReturnValue([
+        ['searchRequest', 'test'],
+        ['pageNumber', '1'],
+        ['pageSize', '1'],
+        ['sortType', 'relevancy'],
+      ]),
+    },
+    () => jest.fn(),
+  ],
   useHistory: () => ({
     push: jest.fn(),
   }),
 }));
 
-let store;
-
-beforeEach(() => {
-  store = createStore(rootReducer);
-});
-
 describe('PageSize', () => {
   it('Render PageSize component', () => {
-    store.dispatch(pageSizeAction(10));
+    store.dispatch({
+      type: NEWS_TYPES.SET_PAGE_SIZE,
+      payload: 10,
+    });
 
     const { getByText, getByRole, getByDisplayValue } = render(
       <LocalStorageMock

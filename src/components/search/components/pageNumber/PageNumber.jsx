@@ -1,13 +1,12 @@
-import { get, set, setQueryUtils } from '@root/utils';
-import { useHistory, useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { pageNumberAction } from '@root/store/pageNumberReducer';
+import { useSearchParams } from 'react-router-dom';
+import { get, set } from '@root/utils';
+import { useAction } from '@root/hooks/useAction';
+import { useSelector } from 'react-redux';
 
-export default function PageNumber() {
-  const router = useHistory();
-  const { search } = useLocation();
-  const dispatch = useDispatch();
-  const pageNumber = useSelector((state) => state.pageNumber.pageNumber);
+const PageNumber = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { pageNumber } = useSelector((state) => state.news);
+  const { setNewsPage } = useAction();
 
   function handlerChange(e) {
     let currentNumber;
@@ -16,25 +15,22 @@ export default function PageNumber() {
     } else {
       currentNumber = e.target.value;
     }
-    dispatch(pageNumberAction(currentNumber));
+
+    setNewsPage(currentNumber);
 
     const requestData = get('requestData');
     set('requestData', { ...requestData, pageNumber: currentNumber });
 
-    setQueryUtils({
-      search,
-      router,
-      param: 'pageNumber',
-      paramValue: currentNumber,
-    });
+    const latestPrams = Object.fromEntries(searchParams.entries());
+    setSearchParams({ ...latestPrams, pageNumber: currentNumber });
   }
 
   return (
     <div className="pageNumber__wrap">
       <label>
         <input
-          className="pageNumber"
           data-testid="pageNumber"
+          className="pageNumber"
           name="pageNumber"
           type="number"
           value={pageNumber}
@@ -43,4 +39,6 @@ export default function PageNumber() {
       </label>
     </div>
   );
-}
+};
+
+export { PageNumber };
