@@ -1,7 +1,8 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/8fff7482-ff72-41ca-a278-e2ced22cce6c/deploy-status)](https://app.netlify.com/sites/react-test-js-netlify/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d15103d8-dedb-45f6-88d8-428e91bd2119/deploy-status)](https://app.netlify.com/sites/react-test-ts-netlify/deploys)
 ## React. Testing
 
-## Demo: **[react-testing](https://react-test-js-netlify.netlify.app/)**
+## Demo: **[react-testing](https://react-test-ts-netlify.netlify.app)**
+## UI Design: **[stories](https://react-redux-ts-ui-netlify.netlify.app)**
 
 Что должно быть сделано:
 
