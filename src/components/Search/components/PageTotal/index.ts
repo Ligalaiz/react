@@ -1,0 +1,1 @@
+export { PageTotal } from './PageTotal';

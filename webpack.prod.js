@@ -22,12 +22,12 @@ module.exports = merge(common, {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.(js|ts)x?$/,
         exclude: /node_modules/,
         use: 'babel-loader',
       },
       {
-        test: /\.(sa|sc|c)ss$/i,
+        test: /\.module\.(sa|sc|c)ss$/i,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
@@ -48,7 +48,7 @@ module.exports = merge(common, {
       chunkFilename: '[name].[contenthash:10].css',
     }),
     new ESLintPlugin({
-      extensions: ['js', 'jsx'],
+      extensions: ['js', 'jsx', '.ts', '.tsx'],
       fix: false,
       failOnError: true,
     }),
