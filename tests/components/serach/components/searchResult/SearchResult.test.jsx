@@ -1,10 +1,9 @@
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { render } from '@testing-library/react';
-import SearchResult from '../../../../../src/components/search/components/searchResult/SearchResult';
-import { itemsAction } from '../../../../../src/store/itemsReducer';
-import rootReducer from '../../../../../src/store/rootReducer';
+import { SearchResult } from '../../../../../src/components/search/components/searchResult/SearchResult';
+import { store } from '../../../../../src/store';
 import '@testing-library/jest-dom';
+import { NEWS_TYPES } from '../../../../../src/store/reducer/reducer';
 import { articles } from '../../../../data';
 
 jest.mock('react-router-dom', () => ({
@@ -20,15 +19,12 @@ jest.mock('react-router-dom', () => ({
   }),
 }));
 
-let store;
-
-beforeEach(() => {
-  store = createStore(rootReducer);
-});
-
 describe('SearchResult return list articles', () => {
   it('List renders', () => {
-    store.dispatch(itemsAction(articles));
+    store.dispatch({
+      type: NEWS_TYPES.SET_NEWS_LOCAL,
+      payload: articles,
+    });
     const { getAllByText, getAllByRole } = render(
       <Provider store={store}>
         <SearchResult />
@@ -36,7 +32,7 @@ describe('SearchResult return list articles', () => {
     );
 
     expect(getAllByText(/Published/i)).toHaveLength(2);
-    expect(getAllByText(/Author/i)).toHaveLength(2);
+    expect(getAllByText(/Author/i)).toHaveLength(1);
     expect(getAllByRole('heading')).toHaveLength(2);
   });
 });

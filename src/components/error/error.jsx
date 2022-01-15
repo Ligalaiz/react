@@ -1,3 +1,4 @@
+import React from 'react';
 import './error.scss';
 import bg from '@root/assets/img/bg.jpg';
 import message from '@root/assets/img/message.png';
@@ -29,4 +30,4 @@ const Error = () => (
   </div>
 );
 
-export default Error;
+export { Error };

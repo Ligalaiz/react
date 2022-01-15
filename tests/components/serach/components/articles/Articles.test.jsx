@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import Articles from '../../../../../src/components/search/components/articles/Arcicles';
+import {Articles} from '../../../../../src/components/search/components/articles/Arcicles';
 import '@testing-library/jest-dom/extend-expect';
 import data from './data';
 

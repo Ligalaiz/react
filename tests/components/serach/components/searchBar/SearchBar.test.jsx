@@ -1,12 +1,11 @@
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { LocalStorageMock } from '@react-mock/localstorage';
-import rootReducer from '../../../../../src/store/rootReducer';
-import SearchBar from '../../../../../src/components/search/components/searchBar/SearchBar';
-import { searchRequestAction } from '../../../../../src/store/searchRequestReducer';
+import { store } from '../../../../../src/store';
+import { NEWS_TYPES } from '../../../../../src/store/reducer/reducer';
+import { SearchBar } from '../../../../../src/components/search/components/searchBar/SearchBar';
 
 jest.mock('react-router-dom', () => ({
   useLocation: jest.fn().mockReturnValue({
@@ -16,16 +15,21 @@ jest.mock('react-router-dom', () => ({
     state: null,
     key: '5',
   }),
+  useSearchParams: () => [
+    {
+      entries: jest.fn().mockReturnValue([
+        ['searchRequest', 'test'],
+        ['pageNumber', '1'],
+        ['pageSize', '1'],
+        ['sortType', 'relevancy'],
+      ]),
+    },
+    () => jest.fn(),
+  ],
   useHistory: () => ({
     push: jest.fn(),
   }),
 }));
-
-let store;
-
-beforeEach(() => {
-  store = createStore(rootReducer);
-});
 
 describe('SearchBar', () => {
   it('Render SearchBar component', () => {
@@ -45,7 +49,10 @@ describe('SearchBar', () => {
   });
 
   it('Check SearchBar validate', () => {
-    store.dispatch(searchRequestAction('Re'));
+    store.dispatch({
+      type: NEWS_TYPES.SET_SEARCH_REQUEST,
+      payload: 'Re',
+    });
     const { getByTestId, getByPlaceholderText } = render(
       <LocalStorageMock items={JSON.stringify({})}>
         <Provider store={store}>

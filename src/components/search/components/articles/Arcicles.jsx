@@ -1,16 +1,21 @@
-import defaultImg from '@root/assets/img/nophoto.jpg';
+import React from 'react';
+import defaultImg from '@root/assets/img/noimage.jpg';
 
-export default function Articles(props) {
-  const { author, description, publishedAt, title, urlToImage } = props.article;
-  const date = new Date(publishedAt);
-  const month = date.getMonth();
-  const day = date.getDate();
-  const currentDate = `${date.getFullYear()}-${
-    month < 10 ? `0${month}` : month
-  }-${day < 10 ? `0${day}` : day}`;
+const Articles = (props) => {
+  const {
+    title,
+    author = '',
+    published_date: publishedDate,
+    excerpt,
+    media,
+  } = props.article;
+
+  const errrorHandler = ({ currentTarget }) => {
+    currentTarget.src = defaultImg;
+  };
 
   return (
-    <div className="article__wrap">
+    <div className="reset-list article__wrap">
       <div className="article">
         <div className="article__image imgage__wrap">
           <div className="rounded-lg">
@@ -18,10 +23,11 @@ export default function Articles(props) {
               <div className="bio-image-wrapper">
                 <img
                   className="bio-image-image"
-                  src={urlToImage || defaultImg}
+                  src={media}
                   alt={title}
                   loading="eager"
                   decoding="async"
+                  onError={errrorHandler}
                 />
               </div>
             </figure>
@@ -29,11 +35,13 @@ export default function Articles(props) {
         </div>
         <div className="article__description">
           <h2 className="article__title">{title}</h2>
-          <p className="short-description">{description}</p>
-          <p>Published at {currentDate}</p>
-          <p>Author: {author}</p>
+          <p className="short-description">{excerpt}</p>
+          <p>Published at {publishedDate}</p>
+          {author && <p>Author: {author}</p>}
         </div>
       </div>
     </div>
   );
-}
+};
+
+export { Articles };

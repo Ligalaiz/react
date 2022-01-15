@@ -1,19 +1,22 @@
-import { Link, useLocation } from 'react-router-dom';
+import React from 'react';
 import { useSelector } from 'react-redux';
-import Articles from '../articles/Arcicles';
+import { Link, useLocation } from 'react-router-dom';
+import { Articles } from '../articles/Arcicles';
 
-export default function SearchResult() {
-  const items = useSelector((state) => state.items.items);
+const SearchResult = () => {
+  const { news } = useSelector((state) => state.news);
   const { search } = useLocation();
+
+  if (!news) return false;
 
   return (
     <>
-      {items.map((article, index) => (
+      {news.map((article, index) => (
         <Link
           to={{
             pathname: `/details/card/${article.id}`,
             search: `${search}`,
-            state: { article: article, id: article.id, items: items },
+            state: { article: article, id: article.id, items: news },
           }}
           key={index}
         >
@@ -22,4 +25,6 @@ export default function SearchResult() {
       ))}
     </>
   );
-}
+};
+
+export { SearchResult };

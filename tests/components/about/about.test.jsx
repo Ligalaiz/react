@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import About from '../../../src/components/about/about';
+import { About } from '../../../src/components/about/about';
 
 describe('About', () => {
   it('Render about component', () => {

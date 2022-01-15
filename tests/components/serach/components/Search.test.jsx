@@ -1,13 +1,11 @@
-import { createStore } from 'redux';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import '@testing-library/jest-dom';
 import { LocalStorageMock } from '@react-mock/localstorage';
 import userEvent from '@testing-library/user-event';
-import rootReducer from '../../../../src/store/rootReducer';
-import Search from '../../../../src/components/search/components/Search';
-import { addErrorAction } from '../../../../src/store/errorReducer';
-import { addLoadingAction } from '../../../../src/store/loadingReducer';
+import { store } from '../../../../src/store';
+import { Search } from '../../../../src/components/search/components/Search';
+import { NEWS_TYPES } from '../../../../src/store/reducer/reducer';
 import { articles } from './data';
 
 jest.mock('react-router-dom', () => ({
@@ -21,6 +19,17 @@ jest.mock('react-router-dom', () => ({
   useHistory: () => ({
     push: jest.fn(),
   }),
+  useSearchParams: () => [
+    {
+      entries: jest.fn().mockReturnValue([
+        ['searchRequest', 'test'],
+        ['pageNumber', '1'],
+        ['pageSize', '1'],
+        ['sortType', 'relevancy'],
+      ]),
+    },
+    () => jest.fn(),
+  ],
   useParams: () => ({
     id: 0,
     test: true,
@@ -29,12 +38,6 @@ jest.mock('react-router-dom', () => ({
     return children;
   }),
 }));
-
-let store;
-
-beforeEach(() => {
-  store = createStore(rootReducer);
-});
 
 describe('Search', () => {
   it('Render Search component', () => {
@@ -51,7 +54,10 @@ describe('Search', () => {
   });
 
   it('Render error message', () => {
-    store.dispatch(addErrorAction({ message: 'Test error' }));
+    store.dispatch({
+      type: NEWS_TYPES.FETCH_NEWS_ERROR,
+      payload: 'Test error',
+    });
     const { getByText, queryByText } = render(
       <LocalStorageMock items={{ items: JSON.stringify(articles) }}>
         <Provider store={store}>
@@ -67,7 +73,7 @@ describe('Search', () => {
   });
 
   it('Render loader', () => {
-    store.dispatch(addLoadingAction(true));
+    store.dispatch({ type: NEWS_TYPES.FETCH_NEWS });
     const { getByTestId } = render(
       <LocalStorageMock items={{ items: JSON.stringify(articles) }}>
         <Provider store={store}>

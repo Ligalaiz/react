@@ -12,7 +12,7 @@ export const articles = [
     url: 'https://www.businesstoday.in/auto/story/teslas-self-driving-software-update-not-great-elon-musk-305034-2021-08-24',
     urlToImage:
       'https://akm-img-a-in.tosshub.com/businesstoday/images/story/202108/untitled-2_2_0-sixteen_nine-sixteen_nine.jpg',
-    publishedAt: '2021-08-24T04:21:18Z',
+    published_date: '2021-07-02',
     content:
       'Tesla Inc\'s Chief Executive Elon Musk said on Monday said that the electric-car maker was working on improving the much-awaited update to its self-driving software "as fast as possible."\r\nThe billion… [+991 chars]',
   },
@@ -29,7 +29,7 @@ export const articles = [
     url: 'https://www.ndtv.com/business/cryptocurrencies-including-bitcoin-ethereum-cardanos-ada-and-dogecoin-have-rebounded-since-may-lows-heres-why-2517181',
     urlToImage:
       'https://c.ndtvimg.com/2021-08/m5bccu4g_bitcoin-bloomberg_625x300_24_August_21.jpg',
-    publishedAt: '2021-08-24T04:20:03Z',
+      published_date: '2021-08-24',
     content:
       "After months languishing in the doldrums, cryptocurrencies are surging. On Monday, Bitcoin breached the $50,000 mark for the first time since May. Other coins - including Ethereum, Cardano's ADA and … [+6661 chars]",
   },

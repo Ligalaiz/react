@@ -1,13 +1,10 @@
 import '@testing-library/jest-dom';
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { LocalStorageMock } from '@react-mock/localstorage';
 import Details from '../../../src/components/details/details';
-import rootReducer from '../../../src/store/rootReducer';
-import { itemsAction } from '../../../src/store/itemsReducer';
-import { addErrorAction } from '../../../src/store/errorReducer';
-
+import { NEWS_TYPES } from '../../../src/store/reducer/reducer';
+import { store } from '../../../src/store';
 import { articles } from '../../data';
 
 jest.mock('react-router-dom', () => ({
@@ -21,6 +18,10 @@ jest.mock('react-router-dom', () => ({
   useHistory: () => ({
     push: jest.fn(),
   }),
+  useNavigate: () => ({
+    navigate: jest.fn(),
+  }),
+  useSearchParams: () => [{}],
   useParams: () => ({
     id: 0,
   }),
@@ -29,16 +30,13 @@ jest.mock('react-router-dom', () => ({
   }),
 }));
 
-let store;
-
-beforeEach(() => {
-  store = createStore(rootReducer);
-});
-
 describe('PageNumber', () => {
   it('Render PageNumber component', () => {
-    store.dispatch(itemsAction([]));
-    store.dispatch(addErrorAction({ message: 'Test error' }));
+    store.dispatch({ type: NEWS_TYPES.FETCH_NEWS });
+    store.dispatch({
+      type: NEWS_TYPES.FETCH_NEWS_ERROR,
+      payload: 'Ошибка загрузки новостей',
+    });
     const { getByText, getAllByRole } = render(
       <LocalStorageMock items={{ items: JSON.stringify(articles) }}>
         <Provider store={store}>

@@ -1,4 +1,4 @@
-import getLocalDataUtils from '../../src/utils/getLocalData.utils';
+import { getLocalDataUtils } from '../../src/utils/getLocalData.utils';
 
 describe('getLocalDataUtils return data from localStorage', () => {
   it('get same structure', () => {

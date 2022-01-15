@@ -1,3 +1,4 @@
+import React from 'react';
 import './about.scss';
 
 const About = () => {
@@ -156,4 +157,4 @@ const About = () => {
   );
 };
 
-export default About;
+export { About };

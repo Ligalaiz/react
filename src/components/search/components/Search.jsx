@@ -1,99 +1,86 @@
-import { useEffect } from 'react';
-import { useLocation, useHistory } from 'react-router-dom';
-import { set, get, getQueryUtils, hasQueryUtils } from '@root/utils';
-import getLocalDataUtils from '@root/utils/getLocalData.utils';
-import getSearchDataUtils from '@root/utils/getSearchData.utils';
-import restoreQueryUtils from '@root/utils/restoreQuery.utils';
-
-import { searchRequestAction } from '@root/store/searchRequestReducer';
-import { pageNumberAction } from '@root/store/pageNumberReducer';
-import { sortTypeAction } from '@root/store/sortTypeReducer';
-import { pageSizeAction } from '@root/store/pageSizeReducer';
-import { useDispatch, useSelector } from 'react-redux';
-import { addErrorAction } from '@root/store/errorReducer';
-import { itemsAction } from '@root/store/itemsReducer';
-
-import SearchResult from './searchResult/SearchResult';
-import SearchBar from './searchBar/SearchBar';
-import SortBar from './sortBar/SortBar';
-import PageBar from './pageBar/PageBar';
-import Loader from './loader/Loader';
+import React, { useEffect } from 'react';
+import { useAction } from '@root/hooks/useAction';
+import { get, getQueryUtils, getUrlUtils, set } from '@root/utils';
+import { getLocalDataUtils } from '@root/utils/getLocalData.utils';
+import { restoreQueryUtils } from '@root/utils/restoreQuery.utils';
+import { useSelector } from 'react-redux';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import '../styles/index.scss';
+import { Loader } from './loader/Loader';
+import { PageBar } from './pageBar/PageBar';
+import { SearchBar } from './searchBar/SearchBar';
+import { SearchResult } from './searchResult/SearchResult';
+import { SortBar } from './sortBar/SortBar';
 
 const Search = () => {
-  const dispatch = useDispatch();
-  const pageNumber = useSelector((state) => state.pageNumber.pageNumber);
-  const pageSize = useSelector((state) => state.pageSize.pageSize);
-  const sortType = useSelector((state) => state.sortType.sortType);
-  const loading = useSelector((state) => state.loading.loading);
-  const error = useSelector((state) => state.error.error);
-  const searchRequest = useSelector(
-    (state) => state.searchRequest.searchRequest,
-  );
+  const { searchRequest, loading, error, pageNumber, sortType, pageSize } =
+    useSelector((state) => state.news);
+  const [searchParams, setSearchParams] = useSearchParams();
   const { search } = useLocation();
-  const router = useHistory();
+  const {
+    fetchNews,
+    setNewsPage,
+    setSearchRequest,
+    setPageSize,
+    setSortType,
+    setNewsLocal,
+    setError,
+  } = useAction();
 
   useEffect(() => {
     const localItems = get('items');
-    const queryData = getQueryUtils(search, {
+    const queryData = getQueryUtils(
+      search,
+      {
+        searchRequest,
+        pageNumber,
+        pageSize,
+        sortType,
+      },
+      searchParams,
+    );
+    const LocalData = getLocalDataUtils({
       searchRequest,
       pageNumber,
       pageSize,
       sortType,
     });
 
-    if (search && hasQueryUtils(search, 'searchRequest')) {
+    if (search && searchParams.get('searchRequest')) {
       set('requestData', queryData);
-
-      dispatch(searchRequestAction(queryData.searchRequest));
-      dispatch(pageNumberAction(queryData.pageNumber));
-      dispatch(pageSizeAction(queryData.pageSize));
-      dispatch(sortTypeAction(queryData.sortType));
-
-      getSearchDataUtils(
-        {
-          searchRequest: queryData.searchRequest,
-          pageNumber: queryData.pageNumber,
-          pageSize: queryData.pageSize,
-          sortType: queryData.sortType,
-        },
-        dispatch,
-      );
+      fetchNews(getUrlUtils(queryData));
+      setNewsPage(queryData.pageNumber);
+      setSearchRequest(queryData.searchRequest);
+      setPageSize(queryData.pageSize);
+      setSortType(queryData.sortType);
     } else if (localItems) {
-      dispatch(itemsAction(localItems));
+      setNewsLocal(localItems);
+
+      restoreQueryUtils({
+        searchParams,
+        setSearchParams,
+        search,
+        requestData: LocalData,
+      });
     } else {
-      const LocalData = getLocalDataUtils({
-        searchRequest,
-        pageNumber,
-        pageSize,
-        sortType,
+      restoreQueryUtils({
+        searchParams,
+        setSearchParams,
+        search,
+        requestData: LocalData,
       });
 
-      restoreQueryUtils({ router, search, requestData: LocalData });
       set('requestData', queryData);
-
-      dispatch(searchRequestAction(LocalData.searchRequest));
-      dispatch(pageNumberAction(LocalData.pageNumber));
-      dispatch(pageSizeAction(LocalData.pageSize));
-      dispatch(sortTypeAction(LocalData.sortType));
+      setSearchRequest(LocalData.searchRequest);
+      setNewsPage(LocalData.pageNumber);
+      setPageSize(LocalData.pageSize);
+      setSortType(LocalData.sortType);
 
       if (LocalData.searchRequest && localItems.length === 0) {
-        getSearchDataUtils(
-          {
-            searchRequest: LocalData.searchRequest,
-            pageNumber: LocalData.pageNumber,
-            pageSize: LocalData.pageSize,
-            sortType: LocalData.sortType,
-          },
-          dispatch,
-        );
+        fetchNews(getUrlUtils(LocalData));
       }
     }
   }, []);
-
-  function handleErrorClick() {
-    dispatch(addErrorAction(null));
-  }
 
   return (
     <>
@@ -114,11 +101,13 @@ const Search = () => {
       {error && (
         <div className="message__wrap">
           <div className="message">
-            <p>{error.message}</p>
+            <p>{error}</p>
             <button
               className="message__btn"
               type="button"
-              onClick={handleErrorClick}
+              onClick={() => {
+                setError(null);
+              }}
             >
               close
             </button>
@@ -130,4 +119,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export { Search };

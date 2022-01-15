@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss';
+@import '@root/styles/variables.scss';
 
 .error {
   &__wrap {
@@ -111,7 +111,6 @@
 
     transform: translate3d(17.9643px, 6.05872px, 0px);
   }
-
 }
 
 .bg__image {

@@ -1,3 +1,4 @@
+import React from 'react';
 import rss from '@root/assets/img/rss.jpg';
 import './contacts.scss';
 
@@ -7,4 +8,4 @@ const Contacts = () => (
   </div>
 );
 
-export default Contacts;
+export { Contacts };

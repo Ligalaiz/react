@@ -1,22 +1,24 @@
-import { set, get, setQueryUtils } from '@root/utils';
-import { useHistory, useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { pageSizeAction } from '@root/store/pageSizeReducer';
+import React from 'react';
+import { useAction } from '@root/hooks/useAction';
+import { get, set } from '@root/utils';
+import { useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 
-export default function PageSize() {
-  const router = useHistory();
-  const { search } = useLocation();
-  const dispatch = useDispatch();
-  const pageSize = useSelector((state) => state.pageSize.pageSize);
+const PageSize = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { pageSize } = useSelector((state) => state.news);
+  const { setPageSize } = useAction();
 
   function handlerChange(e) {
     const sizeValue = e.target.value;
-    dispatch(pageSizeAction(sizeValue));
+
+    setPageSize(sizeValue);
 
     const requestData = get('requestData');
-
     set('requestData', { ...requestData, pageSize: sizeValue });
-    setQueryUtils({ search, router, param: 'pageSize', paramValue: sizeValue });
+
+    const latestPrams = Object.fromEntries(searchParams.entries());
+    setSearchParams({ ...latestPrams, pageSize: sizeValue });
   }
 
   return (
@@ -37,4 +39,6 @@ export default function PageSize() {
       </label>
     </div>
   );
-}
+};
+
+export { PageSize };
