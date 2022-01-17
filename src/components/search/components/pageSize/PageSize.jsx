@@ -1,6 +1,6 @@
-import React from 'react';
 import { useAction } from '@root/hooks/useAction';
 import { get, set } from '@root/utils';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 
@@ -12,7 +12,7 @@ const PageSize = () => {
   function handlerChange(e) {
     const sizeValue = e.target.value;
 
-    setPageSize(sizeValue);
+    setPageSize({ pageSize: sizeValue });
 
     const requestData = get('requestData');
     set('requestData', { ...requestData, pageSize: sizeValue });

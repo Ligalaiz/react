@@ -1,4 +1,4 @@
-import { fetchNews } from '../../src/store/action/action';
+import { newsRequest } from '../../src/module';
 import { articles } from '../data';
 
 let url;
@@ -34,7 +34,7 @@ beforeEach(() => {
   pageSize = 10;
   set = jest.fn();
   dispatch = jest.fn();
-  requestFunc = fetchNews({ url, pageSize });
+  requestFunc = newsRequest({ url, pageSize });
 });
 
 afterAll(() => {

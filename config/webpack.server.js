@@ -1,6 +1,5 @@
 const { join } = require('path');
 const webpackNodeExternals = require('webpack-node-externals');
-const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
 const root = join(__dirname, '../');
 const src = join(root, 'src');

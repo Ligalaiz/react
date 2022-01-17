@@ -1,10 +1,11 @@
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import ActionsNews from '../store/action';
+import { newsRequest } from '@root/module';
+import { newsActions } from '@root/store/reducer';
 
 const useAction = () => {
   const dispatch = useDispatch();
-  return bindActionCreators(ActionsNews, dispatch);
+  return bindActionCreators({ newsRequest, ...newsActions }, dispatch);
 };
 
 export { useAction };

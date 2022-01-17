@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
 import defaultImg from '@root/assets/img/noimage.jpg';
-import { useAction } from '@root/hooks/useAction';
+import { newsRequest } from '@root/module';
 import { get, getQueryUtils, getUrlUtils } from '@root/utils';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import {
   Link,
@@ -11,6 +11,7 @@ import {
   useSearchParams,
 } from 'react-router-dom';
 import './details.scss';
+import { useAction } from '@root/hooks/useAction';
 
 const Details = () => {
   const navigate = useNavigate();
@@ -18,10 +19,9 @@ const Details = () => {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
   const { news, error } = useSelector((state) => state.news);
-  const { fetchNews, setError } = useAction();
-
+  const { setError } = useAction();
   useEffect(() => {
-    fetchNews(getUrlUtils(getQueryUtils(search, undefined, searchParams)));
+    newsRequest(getUrlUtils(getQueryUtils(search, undefined, searchParams)));
   }, []);
 
   const localItems = get('items');
@@ -98,7 +98,7 @@ const Details = () => {
               className="message__btn"
               type="button"
               onClick={() => {
-                setError(null);
+                setError({ error: null });
               }}
             >
               close

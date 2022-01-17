@@ -1,6 +1,6 @@
-import Details from '../components/details/details';
 import { About } from '../components/about/about';
 import { Contacts } from '../components/contacts/contacts';
+import Details from '../components/details/details';
 import { Error } from '../components/error/error';
 
 export const routes = [

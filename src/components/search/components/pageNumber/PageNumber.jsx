@@ -1,13 +1,13 @@
-import React from 'react';
-import { useSearchParams } from 'react-router-dom';
 import { get, set } from '@root/utils';
+import React from 'react';
 import { useAction } from '@root/hooks/useAction';
 import { useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 
 const PageNumber = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { pageNumber } = useSelector((state) => state.news);
-  const { setNewsPage } = useAction();
+  const { setNewsPageNumber } = useAction();
 
   function handlerChange(e) {
     let currentNumber;
@@ -17,7 +17,7 @@ const PageNumber = () => {
       currentNumber = e.target.value;
     }
 
-    setNewsPage(currentNumber);
+    setNewsPageNumber({ pageNumber: currentNumber });
 
     const requestData = get('requestData');
     set('requestData', { ...requestData, pageNumber: currentNumber });

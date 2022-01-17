@@ -1,7 +1,10 @@
-import { applyMiddleware, createStore } from 'redux';
-import thunk from 'redux-thunk';
-import { rootReducer } from './reducer';
+import { configureStore } from '@reduxjs/toolkit';
+import { newsReducer } from './reducer';
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = configureStore({
+  reducer: {
+    news: newsReducer,
+  },
+});
 
 export { store };

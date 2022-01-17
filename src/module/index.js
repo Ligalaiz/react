@@ -1,0 +1,1 @@
+export { newsRequest } from './newsRequest';
