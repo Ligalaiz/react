@@ -5,13 +5,13 @@ const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const { extendDefaultPlugins } = require('svgo');
 const common = require('./webpack.common');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 const root = join(__dirname, '../');
 
 module.exports = merge(common, {
   mode: 'production',
   name: 'client',
-  devtool: 'source-map',
+  target: 'browserslist',
 
   output: {
     path: join(root, 'dist', 'client'),
@@ -40,10 +40,10 @@ module.exports = merge(common, {
     },
   },
 
+
   plugins: [
-    new CleanWebpackPlugin(),
     new ESLintPlugin({
-      extensions: ['js', 'jsx'],
+      extensions: ['js', 'jsx', '.ts', '.tsx'],
       fix: false,
       failOnError: true,
     }),

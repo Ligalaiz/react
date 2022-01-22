@@ -1,23 +1,23 @@
-## React. SSR
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d15103d8-dedb-45f6-88d8-428e91bd2119/deploy-status)](https://app.netlify.com/sites/react-test-ts-netlify/deploys)
+## React. Testing
 
-## Demo: **[react-ssr](https://react-ssr-by-ligalaiz.netlify.app/)**
-
-В данном задании нужно из обычного React App, которое вы сделали в одном из предыдущих заданий, сделать Isomorphic React App.
-
-Перед выполнением обязательно ознакомиться с понятием isomorphic app https://www.acuriousanimal.com/blog/20160810/universal-applications
+## Demo: **[react-ssr](https://react-test-ts-netlify.netlify.app)**
+## UI Design: **[stories](https://react-redux-ts-ui-netlify.netlify.app)**
 
 Что должно быть сделано:
 
-1) Создать отдельную ветку для этого задания из ветки с заданием `React. Redux` или `React. Testing`.
-2) Добавить сервер, который умеет обрабатывать front-end написанный на React.
-3) Сервер умеет возвращать обрабатанный front-end предварительно обернув его в некую структуру HTML.
-4) Обновить front-end, чтобы отрисовывать код на сервере из пункта 2-3 (обратите внимание, что при ssr код отрисовывается на сервере только при первой загрузке, все остальные spa активности(такие как routing, обновление данных на странице, обновление элементов и т.д.) выполняются настороне клиента)
+1) Создать отдельную ветку для этого задания из ветки с заданием `React. Redux` (https://github.com/rolling-scopes-school/tasks/blob/master/tasks/react/react-redux.md)
+2) Добавить скрипты в package.json для запуска тестов и для запуска тестов с coverage (ex: `npm run test, npm run test:coverage`)
+3) Покрыть проект юнит тестами минимум на 60% (т.е. результат `npm run test:coverage`  показывает не менее 60% по всем показателям)
 
-Нельзя использовать Next.js, Gatsby или любое другое готовое решение для ssr.
+Для тестирования используем связки `jest + enzyme` или `jest + react-testing-library`.
+Сообществом активно вытесняется enzyme в пользу react-testing-library, поэтому советовала бы использовать его.
 
 ### Оценка
 
 Задание будет оцениваться ментором в сентябре. Для удобства проверки создайте Pull Request(**МЕРЖИТЬ НЕ НАДО**).
 
 1) Webpack, eslint, prettier, scripts - **0.5 балла**
-2) 2 + 3 + 4 - **14.5 баллов**
+2) 2 + 3 - **14.5 баллов**
+
+Если хоть один из пунктов не выполнен, то задание оценивается в **0 баллов**.

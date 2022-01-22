@@ -5,7 +5,7 @@ const root = join(__dirname, '../');
 const src = join(root, 'src');
 
 module.exports = {
-  entry: ['@babel/polyfill', join(src, 'server/main.js')],
+  entry: ['@babel/polyfill', join(src, 'server/main.tsx')],
   mode: 'production',
   target: 'node',
   name: 'server',
@@ -17,17 +17,21 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: {
+      '@src': join(root, 'src'),
       '@components': join(src, 'components'),
-      '@root': join(root, 'src'),
+      '@shared': join(src, 'components/shared'),
+      '@search': join(src, 'components/search/components'),
+      '@utils': join(src, 'utils'),
+      '@assets': join(src, 'assets'),
     },
   },
 
   module: {
     rules: [
       {
-        test: /\.jsx?$/i,
+        test: /\.(js|ts)x?$/i,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -38,6 +42,10 @@ module.exports = {
       },
       {
         test: /\.(sa|sc|c)ss$/i,
+        use: 'null-loader',
+      },
+      {
+        test: /\.(woff(2)?|eot|ttf|otf)$/i,
         use: 'null-loader',
       },
       {

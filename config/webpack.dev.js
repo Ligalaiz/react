@@ -3,8 +3,7 @@ const { join } = require('path');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common');
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-
-let root = join(__dirname, '../');
+const root = join(__dirname, '../');
 
 module.exports = merge(common, {
   mode: 'development',
@@ -21,13 +20,14 @@ module.exports = merge(common, {
 
   devServer: {
     hot: true,
-    open: true,
+    open: 'true',
     port: 3000,
     historyApiFallback: true,
     contentBase: join(root, 'dist/client'),
   },
 
   // plugins: [new BundleAnalyzerPlugin()],
+
 
   plugins: [
     new ReactRefreshWebpackPlugin(),

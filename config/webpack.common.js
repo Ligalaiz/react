@@ -10,7 +10,7 @@ let root = join(__dirname, '../');
 let src = join(root, 'src');
 
 module.exports = {
-  entry: ['@babel/polyfill', join(src, 'client.jsx')],
+  entry: ['@babel/polyfill', join(src, 'client.tsx')],
 
   module: {
     rules: [
@@ -20,13 +20,24 @@ module.exports = {
         use: 'html-loader',
       },
       {
-        test: /\.jsx?$/i,
+        test: /\.(?:ico|gif|png|jpe?g|svg)$/i,
+        type: 'asset',
+        generator: {
+          filename: 'assets/images/[name].[contenthash:10].[ext]',
+        },
+      },
+      {
+        test: /\.(woff(2)?|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/fonts/[name].[contenthash:10].[ext]',
+        },
+      },
+      {
+        test: /\.(js|ts)x?$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-          },
         },
       },
       {
@@ -38,35 +49,30 @@ module.exports = {
           'sass-loader',
         ],
       },
-      {
-        test: /\.(?:ico|gif|png|jpe?g|svg)$/i,
-        type: 'asset',
-        generator: {
-          filename: 'assets/images/[name].[contenthash:10][ext]',
-        },
-      },
-      {
-        test: /\.(woff(2)?|eot|ttf|otf)$/i,
-        type: 'asset/resource',
-        generator: {
-          filename: 'assets/fonts/[name].[contenthash:10][ext]',
-        },
-      },
     ],
   },
 
+  performance: {
+    hints: false,
+  },
+
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: {
+      '@src': join(root, 'src'),
       '@components': join(src, 'components'),
-      '@root': join(root, 'src'),
+      '@shared': join(src, 'components/shared'),
+      '@search': join(src, 'components/search/components'),
+      '@utils': join(src, 'utils'),
+      '@assets': join(src, 'assets'),
     },
   },
 
   plugins: [
     new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({
-      template: join(src, 'index.html'),
+      template: join('src', 'index.html'),
+      filename: './index.html',
     }),
 
     new Dotenv({

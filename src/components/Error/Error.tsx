@@ -1,0 +1,71 @@
+import React, { FC } from 'react';
+import bg from '@assets/img/bg.jpg';
+import message from '@assets/img/message.png';
+import octopus from '@assets/img/octopus.png';
+import spaceship from '@assets/img/spaceship.png';
+import circle from '@assets/img/circle.png';
+import shadow from '@assets/img/shadow.png';
+import house from '@assets/img/house.png';
+import smHouse from '@assets/img/smHouse.png';
+import {
+  errorWrap,
+  errorBg,
+  errorContent,
+  errorMessage,
+  errorOctopus,
+  errorSpaceship,
+  errorCircle,
+  errorShadow,
+  errorHouse,
+  errorSmHouse,
+  bgImage,
+} from './ErrorStyle';
+
+const Error: FC = () => (
+  <div className="error__wrap" css={errorWrap}>
+    <div className="error__bg error__bg--top bg" css={errorBg}>
+      <img className="bg__image" src={bg} alt="background" css={bgImage} />
+    </div>
+    <div className="error__content" css={errorContent}>
+      <img
+        className="error__message"
+        css={errorMessage}
+        alt="404 “This is not the web page you are looking for”"
+        src={message}
+      />
+      <img
+        alt="octopus"
+        className="error__octopus"
+        src={octopus}
+        css={errorOctopus}
+      />
+      <img
+        alt="spaceship"
+        className="error__spaceship"
+        src={spaceship}
+        css={errorSpaceship}
+      />
+      <img
+        alt="circle"
+        className="error__circle"
+        src={circle}
+        css={errorCircle}
+      />
+      <img
+        alt="shadow"
+        className="error__shadow"
+        src={shadow}
+        css={errorShadow}
+      />
+      <img alt="house" className="error__house" src={house} css={errorHouse} />
+      <img
+        alt="smHouse"
+        className="error__smHouse"
+        src={smHouse}
+        css={errorSmHouse}
+      />
+    </div>
+  </div>
+);
+
+export { Error };
