@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { newsReducer } from './reducer';
+import { newsReducer, authReducer } from './reducer';
 
 const store = configureStore({
   reducer: {
     news: newsReducer,
+    auth: authReducer,
   },
 });
 

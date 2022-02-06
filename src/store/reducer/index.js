@@ -1,1 +1,2 @@
-export { newsReducer, newsActions } from './slice';
+export { newsReducer, newsActions } from './news/newsSlice';
+export { authReducer, authActions } from './auth/authSlice';

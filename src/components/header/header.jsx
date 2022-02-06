@@ -1,11 +1,19 @@
 import React from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { useAction } from '@root/hooks/useAction';
 import logo from '@root/assets/img/logo.svg';
 import logoFull from '@root/assets/img/logo--full.svg';
 import './header.scss';
 
 const Header = () => {
+  const { signOutRequest } = useAction();
   const { search } = useLocation();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    signOutRequest();
+    navigate('/login');
+  };
 
   return (
     <header className="header">
@@ -55,6 +63,15 @@ const Header = () => {
             >
               Contacts
             </NavLink>
+          </li>
+          <li>
+            <button
+              type="button"
+              className="nav__logout"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
           </li>
         </ul>
       </nav>

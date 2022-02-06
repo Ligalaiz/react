@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { renderAppUtils } from './utils/renderApp.utils';
 import { store } from './store';
+import './utils/firebase.utils';
 
 const run = () => {
   ReactDOM.hydrate(

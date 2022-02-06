@@ -99,6 +99,7 @@
   },
   "dependencies": {
     "dotenv-webpack": "^7.0.3",
+    "firebase": "^9.6.6",
     "nodemon": "^2.0.15",
     "null-loader": "^4.0.1",
     "react": "^17.0.2",

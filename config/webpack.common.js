@@ -63,6 +63,10 @@ module.exports = {
     },
   },
 
+  performance: {
+    hints: false,
+  },
+
   plugins: [
     new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({

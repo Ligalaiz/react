@@ -8,11 +8,11 @@ const newsReducers = {
   },
 
   setNewsLocal: (state, action) => {
-     state.news = action.payload.news;
+    state.news = action.payload.news;
   },
 
   setSortType: (state, action) => {
-      state.sortType = action.payload.sortType;
+    state.sortType = action.payload.sortType;
   },
 
   setPageSize: (state, action) => {
