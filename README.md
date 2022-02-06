@@ -25,4 +25,6 @@
 - **[js](https://github.com/Ligalaiz/react/tree/react-testing)** [![Netlify Status](https://api.netlify.com/api/v1/badges/8fff7482-ff72-41ca-a278-e2ced22cce6c/deploy-status)](https://app.netlify.com/sites/react-test-js-netlify/deploys)
 - **[ts](https://github.com/Ligalaiz/react/tree/react-testing)** [![Netlify Status](https://api.netlify.com/api/v1/badges/d15103d8-dedb-45f6-88d8-428e91bd2119/deploy-status)](https://app.netlify.com/sites/react-test-ts-netlify/deploys)
 
-### 7. **[SSR](https://github.com/Ligalaiz/react/tree/react-ssr)**
+### 7. SSR
+- **[js](https://github.com/Ligalaiz/react/tree/react-ssr)**
+- **[ts](https://github.com/Ligalaiz/react/tree/react-ssr-ts)**
