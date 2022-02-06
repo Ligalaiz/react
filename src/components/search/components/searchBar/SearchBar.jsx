@@ -1,3 +1,4 @@
+import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { get, set, getUrlUtils } from '@root/utils';
 import { useSelector } from 'react-redux';
@@ -8,7 +9,7 @@ const SearchBar = () => {
   const { searchRequest, pageNumber, pageSize, sortType } = useSelector(
     (state) => state.news,
   );
-  const { fetchNews, setSearchRequest } = useAction();
+  const { newsRequest, setSearchRequest } = useAction();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,7 +19,9 @@ const SearchBar = () => {
 
       set('requestData', { ...requestData, searchRequest });
 
-      fetchNews(getUrlUtils({ searchRequest, pageNumber, pageSize, sortType }));
+      newsRequest(
+        getUrlUtils({ searchRequest, pageNumber, pageSize, sortType }),
+      );
       const latestPrams = Object.fromEntries(searchParams.entries());
       setSearchParams({ ...latestPrams, searchRequest: searchRequest });
     }
@@ -27,7 +30,7 @@ const SearchBar = () => {
   const handleSearchChange = (e) => {
     const requestValue = e.target.value;
 
-    setSearchRequest(requestValue);
+    setSearchRequest({ searchRequest: requestValue });
   };
 
   return (

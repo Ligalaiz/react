@@ -1,7 +1,7 @@
+import React, { useEffect } from 'react';
 import defaultImg from '@root/assets/img/js.gif';
 import { useAction } from '@root/hooks/useAction';
 import { get, getQueryUtils, getUrlUtils } from '@root/utils';
-import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import {
   Link,
@@ -18,10 +18,10 @@ const Details = () => {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
   const { news, error } = useSelector((state) => state.news);
-  const { fetchNews, setError } = useAction();
+  const { newsRequest, setError } = useAction();
 
   useEffect(() => {
-    fetchNews(getUrlUtils(getQueryUtils(search, undefined, searchParams)));
+    newsRequest(getUrlUtils(getQueryUtils(search, undefined, searchParams)));
   }, []);
 
   const localItems = get('items');
@@ -102,7 +102,7 @@ const Details = () => {
               className="message__btn"
               type="button"
               onClick={() => {
-                setError(null);
+                setError({ error: null });
               }}
             >
               close

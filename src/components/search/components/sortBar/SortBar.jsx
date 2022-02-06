@@ -1,3 +1,4 @@
+import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { get, set } from '@root/utils';
 import { useAction } from '@root/hooks/useAction';
@@ -18,7 +19,7 @@ const SortBar = () => {
   function handleClick(e) {
     const sortValue = e.target.name;
 
-    setSortType(sortValue);
+    setSortType({ sortType: sortValue });
 
     const requestData = get('requestData');
     set('requestData', { ...requestData, sortType: sortValue });

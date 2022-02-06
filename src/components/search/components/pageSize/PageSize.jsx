@@ -1,3 +1,4 @@
+import React from 'react';
 import { useAction } from '@root/hooks/useAction';
 import { get, set } from '@root/utils';
 import { useSelector } from 'react-redux';
@@ -11,7 +12,7 @@ const PageSize = () => {
   function handlerChange(e) {
     const sizeValue = e.target.value;
 
-    setPageSize(sizeValue);
+    setPageSize({ pageSize: sizeValue });
 
     const requestData = get('requestData');
     set('requestData', { ...requestData, pageSize: sizeValue });

@@ -1,8 +1,2 @@
-import { combineReducers } from 'redux';
-import { newsReducer } from './reducer';
-
-const rootReducer = combineReducers({
-  news: newsReducer,
-});
-
-export { rootReducer };
+export { newsReducer, newsActions } from './news/newsSlice';
+export { authReducer, authActions } from './auth/authSlice';

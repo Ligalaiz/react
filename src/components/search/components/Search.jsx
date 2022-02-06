@@ -1,8 +1,8 @@
+import React, { useEffect } from 'react';
 import { useAction } from '@root/hooks/useAction';
 import { get, getQueryUtils, getUrlUtils, set } from '@root/utils';
 import { getLocalDataUtils } from '@root/utils/getLocalData.utils';
 import { restoreQueryUtils } from '@root/utils/restoreQuery.utils';
-import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import '../styles/index.scss';
@@ -18,8 +18,8 @@ const Search = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { search } = useLocation();
   const {
-    fetchNews,
-    setNewsPage,
+    newsRequest,
+    setNewsPageNumber,
     setSearchRequest,
     setPageSize,
     setSortType,
@@ -28,7 +28,7 @@ const Search = () => {
   } = useAction();
 
   useEffect(() => {
-    const localItems = get('items');
+    const localItems = get('items') || [];
     const queryData = getQueryUtils(
       search,
       {
@@ -48,13 +48,13 @@ const Search = () => {
 
     if (search && searchParams.get('searchRequest')) {
       set('requestData', queryData);
-      fetchNews(getUrlUtils(queryData));
-      setNewsPage(queryData.pageNumber);
-      setSearchRequest(queryData.searchRequest);
-      setPageSize(queryData.pageSize);
-      setSortType(queryData.sortType);
+      newsRequest(getUrlUtils(queryData));
+      setNewsPageNumber({ pageNumber: queryData.pageNumber });
+      setSearchRequest({ searchRequest: queryData.searchRequest });
+      setPageSize({ pageSize: queryData.pageSize });
+      setSortType({ sortType: queryData.sortType });
     } else if (localItems) {
-      setNewsLocal(localItems);
+      setNewsLocal({ news: localItems });
 
       restoreQueryUtils({
         searchParams,
@@ -71,13 +71,13 @@ const Search = () => {
       });
 
       set('requestData', queryData);
-      setSearchRequest(LocalData.searchRequest);
-      setNewsPage(LocalData.pageNumber);
-      setPageSize(LocalData.pageSize);
-      setSortType(LocalData.sortType);
+      setSearchRequest({ searchRequest: LocalData.searchRequest });
+      setNewsPageNumber({ pageNumber: LocalData.pageNumber });
+      setPageSize({ pageSize: LocalData.pageSize });
+      setSortType({ sortType: LocalData.sortType });
 
       if (LocalData.searchRequest && localItems.length === 0) {
-        fetchNews(getUrlUtils(LocalData));
+        newsRequest(getUrlUtils(LocalData));
       }
     }
   }, []);
@@ -106,7 +106,7 @@ const Search = () => {
               className="message__btn"
               type="button"
               onClick={() => {
-                setError(null);
+                setError({ error: null });
               }}
             >
               close
