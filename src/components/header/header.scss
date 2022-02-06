@@ -24,7 +24,8 @@
   align-items: center;
 }
 
-.nav a {
+.nav a,
+.nav__logout {
   color: $white-color;
   text-decoration: none;
   display: flex;
@@ -32,14 +33,23 @@
   width: 100%;
   align-items: center;
   padding: 0 15px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }
-.nav__link {
+.nav__link,
+.nav__logout {
   transition: all 0.2s linear;
 }
 .nav__link:hover,
-.nav__link.active {
+.nav__link.active,
+.nav__logout.active {
   background-color: rgba(0, 0, 0, 0.3);
 }
+
+// .nav__logout {
+//   border-color: $white-color;
+// }
 
 .nav__link--about {
   position: relative;

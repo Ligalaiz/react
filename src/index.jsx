@@ -1,18 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { App } from './App';
-import { AppRouter } from './components/appRouter/appRouter';
+import { Provider } from 'react-redux';
+import { renderAppUtils } from './utils/renderApp.utils';
 import { store } from './store';
+import './utils/firebase.utils';
 
 ReactDOM.render(
-  <Router>
-    <Provider store={store}>
-      <App>
-        <AppRouter />
-      </App>
-    </Provider>
-  </Router>,
+  <Provider store={store}>
+    <Router>{renderAppUtils()}</Router>
+  </Provider>,
   document.getElementById('root'),
 );
