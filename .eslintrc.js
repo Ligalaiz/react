@@ -87,7 +87,7 @@ module.exports = {
         extensions: ['.js', '.jsx'],
       },
       webpack: {
-        config: 'webpack.common.js',
+        config: 'config/webpack.common.js',
       },
     },
     propWrapperFunctions: [

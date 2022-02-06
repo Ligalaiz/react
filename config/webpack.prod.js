@@ -1,56 +1,49 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { merge } = require('webpack-merge');
+const { join } = require('path');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const { extendDefaultPlugins } = require('svgo');
 const common = require('./webpack.common');
+const root = join(__dirname, '../');
 
 module.exports = merge(common, {
   mode: 'production',
-  target: 'browserslist',
+  name: 'client',
+  devtool: 'source-map',
 
   output: {
+    path: join(root, 'dist'),
     filename: '[name].[chunkhash:10].js',
     chunkFilename: '[name].[chunkhash:10].js',
     assetModuleFilename: 'assets/[name].[chunkhash:10].[ext]',
   },
 
-  performance: {
-    hints: false,
-  },
-
-  module: {
-    rules: [
-      {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        use: 'babel-loader',
+  optimization: {
+    runtimeChunk: 'single',
+    minimizer: [`...`, new CssMinimizerPlugin()],
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+        styles: {
+          name: 'main',
+          type: 'css/mini-extract',
+          chunks: 'all',
+          enforce: true,
+        },
       },
-      {
-        test: /\.(sa|sc|c)ss$/i,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-          },
-          {
-            loader: 'css-loader',
-          },
-          'postcss-loader',
-          'sass-loader',
-        ],
-      },
-    ],
+    },
   },
 
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: 'styles/[name].[contenthash:10].css',
-      chunkFilename: '[name].[contenthash:10].css',
-    }),
     new ESLintPlugin({
       extensions: ['js', 'jsx'],
-      fix: false,
-      failOnError: true,
+      // fix: false,
+      // failOnError: true,
     }),
     new ImageMinimizerPlugin({
       minimizerOptions: {
