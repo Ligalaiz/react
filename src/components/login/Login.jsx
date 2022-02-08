@@ -7,7 +7,7 @@ import './login.scss';
 
 const Login = () => {
   const { authLoading, authError } = useSelector((state) => state.auth);
-  const { setAuthError, loginRequest } = useAction();
+  const { setAuthError, loginRequestAction } = useAction();
   const [currentLogin, setCurrentLogin] = useState('');
   const [currentPassword, setCurrentPassword] = useState('');
   const [btnStatus, setBtnStatus] = useState(true);
@@ -19,7 +19,7 @@ const Login = () => {
     e.preventDefault();
     const currentUser = { email: currentLogin, password: currentPassword };
 
-    const result = await loginRequest(currentUser);
+    const result = await loginRequestAction(currentUser);
 
     if (!result.error) {
       navigate(fromPage);

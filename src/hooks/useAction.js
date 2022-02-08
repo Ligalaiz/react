@@ -1,21 +1,21 @@
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {
-  newsRequest,
-  loginRequest,
-  signUpRequest,
-  signOutRequest,
-} from '@root/module';
 import { newsActions, authActions } from '@root/store/reducer';
+import {
+  newsRequestAction,
+  loginRequestAction,
+  signUpRequestAction,
+  signOutRequestAction,
+} from '@root/saga';
 
 const useAction = () => {
   const dispatch = useDispatch();
   return bindActionCreators(
     {
-      newsRequest,
-      loginRequest,
-      signUpRequest,
-      signOutRequest,
+      newsRequestAction,
+      loginRequestAction,
+      signUpRequestAction,
+      signOutRequestAction,
       ...newsActions,
       ...authActions,
     },

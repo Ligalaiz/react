@@ -6,12 +6,12 @@ import logoFull from '@root/assets/img/logo--full.svg';
 import './header.scss';
 
 const Header = () => {
-  const { signOutRequest } = useAction();
+  const { signOutRequestAction } = useAction();
   const { search } = useLocation();
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    signOutRequest();
+    signOutRequestAction();
     navigate('/login');
   };
 

@@ -42,8 +42,8 @@ module.exports = merge(common, {
   plugins: [
     new ESLintPlugin({
       extensions: ['js', 'jsx'],
-      // fix: false,
-      // failOnError: true,
+      fix: false,
+      failOnError: true,
     }),
     new ImageMinimizerPlugin({
       minimizerOptions: {

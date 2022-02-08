@@ -17,8 +17,9 @@ const Search = () => {
     useSelector((state) => state.news);
   const [searchParams, setSearchParams] = useSearchParams();
   const { search } = useLocation();
+
   const {
-    newsRequest,
+    newsRequestAction,
     setNewsPageNumber,
     setSearchRequest,
     setPageSize,
@@ -48,7 +49,7 @@ const Search = () => {
 
     if (search && searchParams.get('searchRequest')) {
       set('requestData', queryData);
-      newsRequest(getUrlUtils(queryData));
+      newsRequestAction(getUrlUtils(queryData));
       setNewsPageNumber({ pageNumber: queryData.pageNumber });
       setSearchRequest({ searchRequest: queryData.searchRequest });
       setPageSize({ pageSize: queryData.pageSize });
@@ -77,7 +78,7 @@ const Search = () => {
       setSortType({ sortType: LocalData.sortType });
 
       if (LocalData.searchRequest && localItems.length === 0) {
-        newsRequest(getUrlUtils(LocalData));
+        newsRequestAction(getUrlUtils(LocalData));
       }
     }
   }, []);

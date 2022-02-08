@@ -1,3 +1,5 @@
+import { set } from '@root/utils';
+
 const newsReducers = {
   setNewsPageNumber: (state, action) => {
     state.pageNumber = action.payload.pageNumber;
@@ -20,7 +22,30 @@ const newsReducers = {
   },
 
   setError: (state, action) => {
+    state.loading = false;
     state.error = action.payload.error;
+  },
+
+  newsRequest: (state, action) => {
+    const result = action.payload || [];
+    const resultWithID = result.articles.map((item, index) => {
+      item.id = `${index}`;
+      return item;
+    });
+
+    state.news = resultWithID;
+    state.loading = false;
+    state.pageTotal = result.total_pages;
+    set('items', resultWithID || []);
+  },
+
+  newsLoadingStart: (state) => {
+    state.loading = true;
+    state.error = null;
+  },
+
+  newsLoadingEnd: (state) => {
+    state.loading = false;
   },
 };
 

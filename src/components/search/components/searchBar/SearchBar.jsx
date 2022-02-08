@@ -9,7 +9,7 @@ const SearchBar = () => {
   const { searchRequest, pageNumber, pageSize, sortType } = useSelector(
     (state) => state.news,
   );
-  const { newsRequest, setSearchRequest } = useAction();
+  const { newsRequestAction, setSearchRequest } = useAction();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,9 +19,10 @@ const SearchBar = () => {
 
       set('requestData', { ...requestData, searchRequest });
 
-      newsRequest(
+      newsRequestAction(
         getUrlUtils({ searchRequest, pageNumber, pageSize, sortType }),
       );
+
       const latestPrams = Object.fromEntries(searchParams.entries());
       setSearchParams({ ...latestPrams, searchRequest: searchRequest });
     }

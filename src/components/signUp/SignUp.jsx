@@ -7,7 +7,7 @@ import './signUp.scss';
 
 const SignUp = () => {
   const { authLoading, authError } = useSelector((state) => state.auth);
-  const { setAuthError, signUpRequest } = useAction();
+  const { setAuthError, signUpRequestAction } = useAction();
   const [currentLogin, setCurrentLogin] = useState('');
   const [currentPassword, setCurrentPassword] = useState('');
   const [btnStatus, setBtnStatus] = useState(true);
@@ -19,7 +19,7 @@ const SignUp = () => {
     e.preventDefault();
     const currentUser = { email: currentLogin, password: currentPassword };
 
-    const result = await signUpRequest(currentUser);
+    const result = await signUpRequestAction(currentUser);
 
     if (!result.error) {
       navigate(fromPage);

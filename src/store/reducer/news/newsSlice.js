@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getNews } from './getNews';
 import { newsReducers } from './newsReducers';
 
 const initialState = {
@@ -17,7 +16,6 @@ const newsSlice = createSlice({
   name: 'news',
   initialState,
   reducers: newsReducers,
-  extraReducers: { ...getNews },
 });
 
 const newsActions = newsSlice.actions;

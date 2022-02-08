@@ -18,10 +18,12 @@ const Details = () => {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
   const { news, error } = useSelector((state) => state.news);
-  const { newsRequest, setError } = useAction();
+  const { newsRequestAction, setError } = useAction();
 
   useEffect(() => {
-    newsRequest(getUrlUtils(getQueryUtils(search, undefined, searchParams)));
+    newsRequestAction(
+      getUrlUtils(getQueryUtils(search, undefined, searchParams)),
+    );
   }, []);
 
   const localItems = get('items');
